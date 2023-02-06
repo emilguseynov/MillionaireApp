@@ -13,10 +13,14 @@
 		C7BC09B1298F8FAE00787737 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7BC09AF298F8FAE00787737 /* LaunchScreen.storyboard */; };
 		C7BC09C8298F98B800787737 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BC09C7298F98B800787737 /* MainViewController.swift */; };
 		C7BC09CA298FA55B00787737 /* ImagesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BC09C9298FA55B00787737 /* ImagesList.swift */; };
+
 		CE3D38F829906E2B00868B09 /* QuestionsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3D38F729906E2B00868B09 /* QuestionsListViewController.swift */; };
 		CE3D38FA29907A6A00868B09 /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3D38F929907A6A00868B09 /* QuestionTableViewCell.swift */; };
 		CEDD761C2991127100FDFCC1 /* QuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDD761B2991127100FDFCC1 /* QuestionModel.swift */; };
 		CEDD761E2991129400FDFCC1 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDD761D2991129400FDFCC1 /* Images.swift */; };
+		C7BC09CE29911FF500787737 /* questions.json in Resources */ = {isa = PBXBuildFile; fileRef = C7BC09CD29911FF500787737 /* questions.json */; };
+		C7BC09D229912F5A00787737 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BC09D129912F5A00787737 /* Service.swift */; };
+		C7BC09D52991318500787737 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BC09D42991318500787737 /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +36,9 @@
 		CE3D38F929907A6A00868B09 /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTableViewCell.swift; sourceTree = "<group>"; };
 		CEDD761B2991127100FDFCC1 /* QuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionModel.swift; sourceTree = "<group>"; };
 		CEDD761D2991129400FDFCC1 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		C7BC09CD29911FF500787737 /* questions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = questions.json; sourceTree = SOURCE_ROOT; };
+		C7BC09D129912F5A00787737 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		C7BC09D42991318500787737 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,12 +71,14 @@
 		C7BC09A3298F8FAC00787737 /* MillionaireApp */ = {
 			isa = PBXGroup;
 			children = (
+				C7BC09D029912F5000787737 /* Service */,
 				C7BC09B9298F919500787737 /* Helpers */,
 				C7BC09B8298F918900787737 /* Module */,
 				C7BC09C6298F979700787737 /* Delegates */,
 				C7BC09AD298F8FAE00787737 /* Assets.xcassets */,
 				C7BC09AF298F8FAE00787737 /* LaunchScreen.storyboard */,
 				C7BC09B2298F8FAE00787737 /* Info.plist */,
+				C7BC09CD29911FF500787737 /* questions.json */,
 			);
 			path = MillionaireApp;
 			sourceTree = "<group>";
@@ -114,6 +123,7 @@
 		C7BC09BC298F929000787737 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				C7BC09D32991317800787737 /* Model */,
 				C7BC09C1298F93E500787737 /* View */,
 				C7BC09C0298F93BE00787737 /* Controller */,
 			);
@@ -203,6 +213,18 @@
 			children = (
 				CEDD761B2991127100FDFCC1 /* QuestionModel.swift */,
 				CEDD761D2991129400FDFCC1 /* Images.swift */,
+		C7BC09D029912F5000787737 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				C7BC09D129912F5A00787737 /* Service.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		C7BC09D32991317800787737 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C7BC09D42991318500787737 /* Model.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -265,6 +287,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7BC09CE29911FF500787737 /* questions.json in Resources */,
 				C7BC09B1298F8FAE00787737 /* LaunchScreen.storyboard in Resources */,
 				C7BC09AE298F8FAE00787737 /* Assets.xcassets in Resources */,
 			);
@@ -281,6 +304,8 @@
 				CEDD761E2991129400FDFCC1 /* Images.swift in Sources */,
 				C7BC09C8298F98B800787737 /* MainViewController.swift in Sources */,
 				C7BC09A5298F8FAC00787737 /* AppDelegate.swift in Sources */,
+				C7BC09D229912F5A00787737 /* Service.swift in Sources */,
+				C7BC09D52991318500787737 /* Model.swift in Sources */,
 				C7BC09CA298FA55B00787737 /* ImagesList.swift in Sources */,
 				CE3D38FA29907A6A00868B09 /* QuestionTableViewCell.swift in Sources */,
 				CE3D38F829906E2B00868B09 /* QuestionsListViewController.swift in Sources */,
