@@ -11,14 +11,15 @@ class QuestionTableViewCell: UITableViewCell {
     
     static let identifier = "QuestionTableViewCell"
     
-    lazy var bgView: UIView = {
-        let view = UIView()
+    lazy var bgImage: UIImageView = {
+        let image = UIImageView()
         
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .green
-        view.layer.cornerRadius = 15
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(named: "bgBlue")
+        image.layer.cornerRadius = 15
+        image.contentMode = .scaleToFill
         
-        return view
+        return image
     }()
     
     lazy var titleLabel: UILabel = {
@@ -26,6 +27,7 @@ class QuestionTableViewCell: UITableViewCell {
         
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Title"
+        label.textColor = .white
         label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
         
         return label
@@ -36,7 +38,8 @@ class QuestionTableViewCell: UITableViewCell {
         
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Amount"
-        label.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
         
         return label
     }()
@@ -51,24 +54,24 @@ class QuestionTableViewCell: UITableViewCell {
     }
     
     func layout() {
-        bgView.addSubview(titleLabel)
-        bgView.addSubview(amountLabel)
+        bgImage.addSubview(titleLabel)
+        bgImage.addSubview(amountLabel)
         
-        addSubview(bgView)
+        addSubview(bgImage)
         
         NSLayoutConstraint.activate([
-            bgView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            bgView.topAnchor.constraint(equalTo: topAnchor, constant: 4),
-            bgView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            trailingAnchor.constraint(equalTo: bgView.trailingAnchor),
-            bottomAnchor.constraint(equalTo: bgView.bottomAnchor, constant: 4)
+            bgImage.centerYAnchor.constraint(equalTo: centerYAnchor),
+            bgImage.topAnchor.constraint(equalTo: topAnchor, constant: 4),
+            bgImage.leadingAnchor.constraint(equalTo: leadingAnchor),
+            trailingAnchor.constraint(equalTo: bgImage.trailingAnchor),
+            bottomAnchor.constraint(equalTo: bgImage.bottomAnchor, constant: 4)
         ])
         
         NSLayoutConstraint.activate([
-            titleLabel.centerYAnchor.constraint(equalTo: bgView.centerYAnchor),
+            titleLabel.centerYAnchor.constraint(equalTo: bgImage.centerYAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             trailingAnchor.constraint(equalTo: amountLabel.trailingAnchor, constant: 16),
-            amountLabel.centerYAnchor.constraint(equalTo: bgView.centerYAnchor)
+            amountLabel.centerYAnchor.constraint(equalTo: bgImage.centerYAnchor)
         ])
     }
 }
