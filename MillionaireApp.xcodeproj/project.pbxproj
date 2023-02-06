@@ -13,6 +13,8 @@
 		C7BC09B1298F8FAE00787737 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7BC09AF298F8FAE00787737 /* LaunchScreen.storyboard */; };
 		C7BC09C8298F98B800787737 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BC09C7298F98B800787737 /* MainViewController.swift */; };
 		C7BC09CA298FA55B00787737 /* ImagesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BC09C9298FA55B00787737 /* ImagesList.swift */; };
+		CE3D38F829906E2B00868B09 /* QuestionsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3D38F729906E2B00868B09 /* QuestionsListViewController.swift */; };
+		CE3D38FA29907A6A00868B09 /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3D38F929907A6A00868B09 /* QuestionTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		C7BC09B2298F8FAE00787737 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7BC09C7298F98B800787737 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C7BC09C9298FA55B00787737 /* ImagesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesList.swift; sourceTree = "<group>"; };
+		CE3D38F729906E2B00868B09 /* QuestionsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QuestionsListViewController.swift; path = "../../../../../../../.Trash/MillionaireApp 2.01.36 AM/MillionaireApp/Module/QuestionList/Controller/QuestionsListViewController.swift"; sourceTree = "<group>"; };
+		CE3D38F929907A6A00868B09 /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,8 +119,8 @@
 		C7BC09BD298F92F000787737 /* QuestionList */ = {
 			isa = PBXGroup;
 			children = (
-				C7BC09C3298F93F300787737 /* View */,
 				C7BC09C2298F93EC00787737 /* Controller */,
+				C7BC09C3298F93F300787737 /* View */,
 			);
 			path = QuestionList;
 			sourceTree = "<group>";
@@ -153,6 +157,7 @@
 		C7BC09C2298F93EC00787737 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CE3D38F729906E2B00868B09 /* QuestionsListViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -160,6 +165,7 @@
 		C7BC09C3298F93F300787737 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CE3D38F929907A6A00868B09 /* QuestionTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -260,6 +266,8 @@
 				C7BC09C8298F98B800787737 /* MainViewController.swift in Sources */,
 				C7BC09A5298F8FAC00787737 /* AppDelegate.swift in Sources */,
 				C7BC09CA298FA55B00787737 /* ImagesList.swift in Sources */,
+				CE3D38FA29907A6A00868B09 /* QuestionTableViewCell.swift in Sources */,
+				CE3D38F829906E2B00868B09 /* QuestionsListViewController.swift in Sources */,
 				C7BC09A7298F8FAC00787737 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

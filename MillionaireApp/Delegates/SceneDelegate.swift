@@ -15,7 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        let viewController = MainViewController()
+        let viewController = QuestionsListViewController()
         let navController = UINavigationController(rootViewController: viewController)
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
