@@ -13,6 +13,9 @@
 		C7BC09B1298F8FAE00787737 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7BC09AF298F8FAE00787737 /* LaunchScreen.storyboard */; };
 		C7BC09C8298F98B800787737 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BC09C7298F98B800787737 /* MainViewController.swift */; };
 		C7BC09CA298FA55B00787737 /* ImagesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BC09C9298FA55B00787737 /* ImagesList.swift */; };
+		C7BC09CE29911FF500787737 /* questions.json in Resources */ = {isa = PBXBuildFile; fileRef = C7BC09CD29911FF500787737 /* questions.json */; };
+		C7BC09D229912F5A00787737 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BC09D129912F5A00787737 /* Service.swift */; };
+		C7BC09D52991318500787737 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BC09D42991318500787737 /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		C7BC09B2298F8FAE00787737 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7BC09C7298F98B800787737 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C7BC09C9298FA55B00787737 /* ImagesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesList.swift; sourceTree = "<group>"; };
+		C7BC09CD29911FF500787737 /* questions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = questions.json; sourceTree = SOURCE_ROOT; };
+		C7BC09D129912F5A00787737 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		C7BC09D42991318500787737 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,12 +62,14 @@
 		C7BC09A3298F8FAC00787737 /* MillionaireApp */ = {
 			isa = PBXGroup;
 			children = (
+				C7BC09D029912F5000787737 /* Service */,
 				C7BC09B9298F919500787737 /* Helpers */,
 				C7BC09B8298F918900787737 /* Module */,
 				C7BC09C6298F979700787737 /* Delegates */,
 				C7BC09AD298F8FAE00787737 /* Assets.xcassets */,
 				C7BC09AF298F8FAE00787737 /* LaunchScreen.storyboard */,
 				C7BC09B2298F8FAE00787737 /* Info.plist */,
+				C7BC09CD29911FF500787737 /* questions.json */,
 			);
 			path = MillionaireApp;
 			sourceTree = "<group>";
@@ -106,6 +114,7 @@
 		C7BC09BC298F929000787737 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				C7BC09D32991317800787737 /* Model */,
 				C7BC09C1298F93E500787737 /* View */,
 				C7BC09C0298F93BE00787737 /* Controller */,
 			);
@@ -187,6 +196,22 @@
 			path = Delegates;
 			sourceTree = "<group>";
 		};
+		C7BC09D029912F5000787737 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				C7BC09D129912F5A00787737 /* Service.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		C7BC09D32991317800787737 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C7BC09D42991318500787737 /* Model.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -245,6 +270,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7BC09CE29911FF500787737 /* questions.json in Resources */,
 				C7BC09B1298F8FAE00787737 /* LaunchScreen.storyboard in Resources */,
 				C7BC09AE298F8FAE00787737 /* Assets.xcassets in Resources */,
 			);
@@ -259,6 +285,8 @@
 			files = (
 				C7BC09C8298F98B800787737 /* MainViewController.swift in Sources */,
 				C7BC09A5298F8FAC00787737 /* AppDelegate.swift in Sources */,
+				C7BC09D229912F5A00787737 /* Service.swift in Sources */,
+				C7BC09D52991318500787737 /* Model.swift in Sources */,
 				C7BC09CA298FA55B00787737 /* ImagesList.swift in Sources */,
 				C7BC09A7298F8FAC00787737 /* SceneDelegate.swift in Sources */,
 			);
