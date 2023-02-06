@@ -28,7 +28,7 @@ class QuestionTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Title"
         label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         
         return label
     }()
@@ -39,7 +39,7 @@ class QuestionTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Amount"
         label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         
         return label
     }()
@@ -61,10 +61,10 @@ class QuestionTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             bgImage.centerYAnchor.constraint(equalTo: centerYAnchor),
-            bgImage.topAnchor.constraint(equalTo: topAnchor, constant: 4),
+            bgImage.topAnchor.constraint(equalTo: topAnchor, constant: 2),
             bgImage.leadingAnchor.constraint(equalTo: leadingAnchor),
             trailingAnchor.constraint(equalTo: bgImage.trailingAnchor),
-            bottomAnchor.constraint(equalTo: bgImage.bottomAnchor, constant: 4)
+            bottomAnchor.constraint(equalTo: bgImage.bottomAnchor, constant: 2)
         ])
         
         NSLayoutConstraint.activate([
