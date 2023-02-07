@@ -9,17 +9,28 @@
 /* Begin PBXBuildFile section */
 		6F8034842990292B008F7026 /* GameMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8034832990292B008F7026 /* GameMainVC.swift */; };
 		6F80348629924574008F7026 /* QuestionAnswerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F80348529924574008F7026 /* QuestionAnswerTableViewCell.swift */; };
+		607CFD162991A30E00930BEB /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607CFD152991A30E00930BEB /* RulesViewController.swift */; };
+		607CFD192991A3E600930BEB /* RulesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607CFD182991A3E600930BEB /* RulesModel.swift */; };
 		C7BC09A5298F8FAC00787737 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BC09A4298F8FAC00787737 /* AppDelegate.swift */; };
 		C7BC09A7298F8FAC00787737 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BC09A6298F8FAC00787737 /* SceneDelegate.swift */; };
 		C7BC09AE298F8FAE00787737 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7BC09AD298F8FAE00787737 /* Assets.xcassets */; };
 		C7BC09B1298F8FAE00787737 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7BC09AF298F8FAE00787737 /* LaunchScreen.storyboard */; };
 		C7BC09C8298F98B800787737 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BC09C7298F98B800787737 /* MainViewController.swift */; };
 		C7BC09CA298FA55B00787737 /* ImagesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BC09C9298FA55B00787737 /* ImagesList.swift */; };
+		C7BC09CE29911FF500787737 /* questions.json in Resources */ = {isa = PBXBuildFile; fileRef = C7BC09CD29911FF500787737 /* questions.json */; };
+		C7BC09D229912F5A00787737 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BC09D129912F5A00787737 /* Service.swift */; };
+		C7BC09D52991318500787737 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BC09D42991318500787737 /* Model.swift */; };
+		CEC65F30299262FC004530DD /* QuestionsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC65F2F299262FC004530DD /* QuestionsListViewController.swift */; };
+		CEC65F322992634C004530DD /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC65F312992634C004530DD /* QuestionTableViewCell.swift */; };
+		CEC65F3529926367004530DD /* QuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC65F3429926367004530DD /* QuestionModel.swift */; };
+		CEC65F372992637A004530DD /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC65F362992637A004530DD /* Images.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6F8034832990292B008F7026 /* GameMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMainVC.swift; sourceTree = "<group>"; };
 		6F80348529924574008F7026 /* QuestionAnswerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionAnswerTableViewCell.swift; sourceTree = "<group>"; };
+		607CFD152991A30E00930BEB /* RulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesViewController.swift; sourceTree = "<group>"; };
+		607CFD182991A3E600930BEB /* RulesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesModel.swift; sourceTree = "<group>"; };
 		C7BC09A1298F8FAC00787737 /* MillionaireApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MillionaireApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7BC09A4298F8FAC00787737 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7BC09A6298F8FAC00787737 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -28,6 +39,13 @@
 		C7BC09B2298F8FAE00787737 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7BC09C7298F98B800787737 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C7BC09C9298FA55B00787737 /* ImagesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesList.swift; sourceTree = "<group>"; };
+		C7BC09CD29911FF500787737 /* questions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = questions.json; sourceTree = SOURCE_ROOT; };
+		C7BC09D129912F5A00787737 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		C7BC09D42991318500787737 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		CEC65F2F299262FC004530DD /* QuestionsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsListViewController.swift; sourceTree = "<group>"; };
+		CEC65F312992634C004530DD /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTableViewCell.swift; sourceTree = "<group>"; };
+		CEC65F3429926367004530DD /* QuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionModel.swift; sourceTree = "<group>"; };
+		CEC65F362992637A004530DD /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +59,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		607CFD172991A3C800930BEB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				607CFD182991A3E600930BEB /* RulesModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		C7BC0998298F8FAC00787737 = {
 			isa = PBXGroup;
 			children = (
@@ -60,12 +86,14 @@
 		C7BC09A3298F8FAC00787737 /* MillionaireApp */ = {
 			isa = PBXGroup;
 			children = (
+				C7BC09D029912F5000787737 /* Service */,
 				C7BC09B9298F919500787737 /* Helpers */,
 				C7BC09B8298F918900787737 /* Module */,
 				C7BC09C6298F979700787737 /* Delegates */,
 				C7BC09AD298F8FAE00787737 /* Assets.xcassets */,
 				C7BC09AF298F8FAE00787737 /* LaunchScreen.storyboard */,
 				C7BC09B2298F8FAE00787737 /* Info.plist */,
+				C7BC09CD29911FF500787737 /* questions.json */,
 			);
 			path = MillionaireApp;
 			sourceTree = "<group>";
@@ -101,6 +129,7 @@
 		C7BC09BB298F928600787737 /* Rules */ = {
 			isa = PBXGroup;
 			children = (
+				607CFD172991A3C800930BEB /* Model */,
 				C7BC09C5298F941800787737 /* View */,
 				C7BC09C4298F941100787737 /* Controller */,
 			);
@@ -110,6 +139,7 @@
 		C7BC09BC298F929000787737 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				C7BC09D32991317800787737 /* Model */,
 				C7BC09C1298F93E500787737 /* View */,
 				C7BC09C0298F93BE00787737 /* Controller */,
 			);
@@ -119,6 +149,7 @@
 		C7BC09BD298F92F000787737 /* QuestionList */ = {
 			isa = PBXGroup;
 			children = (
+				CEC65F3329926357004530DD /* Model */,
 				C7BC09C3298F93F300787737 /* View */,
 				C7BC09C2298F93EC00787737 /* Controller */,
 			);
@@ -159,6 +190,7 @@
 		C7BC09C2298F93EC00787737 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				CEC65F2F299262FC004530DD /* QuestionsListViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -166,6 +198,7 @@
 		C7BC09C3298F93F300787737 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CEC65F312992634C004530DD /* QuestionTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -173,6 +206,7 @@
 		C7BC09C4298F941100787737 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				607CFD152991A30E00930BEB /* RulesViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -191,6 +225,31 @@
 				C7BC09A6298F8FAC00787737 /* SceneDelegate.swift */,
 			);
 			path = Delegates;
+			sourceTree = "<group>";
+		};
+		C7BC09D029912F5000787737 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				C7BC09D129912F5A00787737 /* Service.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		C7BC09D32991317800787737 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C7BC09D42991318500787737 /* Model.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CEC65F3329926357004530DD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CEC65F3429926367004530DD /* QuestionModel.swift */,
+				CEC65F362992637A004530DD /* Images.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,6 +310,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7BC09CE29911FF500787737 /* questions.json in Resources */,
 				C7BC09B1298F8FAE00787737 /* LaunchScreen.storyboard in Resources */,
 				C7BC09AE298F8FAE00787737 /* Assets.xcassets in Resources */,
 			);
@@ -263,12 +323,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEC65F30299262FC004530DD /* QuestionsListViewController.swift in Sources */,
+				CEC65F372992637A004530DD /* Images.swift in Sources */,
+				CEC65F322992634C004530DD /* QuestionTableViewCell.swift in Sources */,
+				CEC65F3529926367004530DD /* QuestionModel.swift in Sources */,
+				607CFD162991A30E00930BEB /* RulesViewController.swift in Sources */,
 				C7BC09C8298F98B800787737 /* MainViewController.swift in Sources */,
 				6F80348629924574008F7026 /* QuestionAnswerTableViewCell.swift in Sources */,
 				C7BC09A5298F8FAC00787737 /* AppDelegate.swift in Sources */,
+				C7BC09D229912F5A00787737 /* Service.swift in Sources */,
+				C7BC09D52991318500787737 /* Model.swift in Sources */,
 				C7BC09CA298FA55B00787737 /* ImagesList.swift in Sources */,
 				C7BC09A7298F8FAC00787737 /* SceneDelegate.swift in Sources */,
 				6F8034842990292B008F7026 /* GameMainVC.swift in Sources */,
+				607CFD192991A3E600930BEB /* RulesModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,0 +1,349 @@
+
+[
+    {
+        "text": "Что растёт в огороде?",
+        "price": 100,
+        "isSafeHaven": false,
+        "answers": [
+            {
+                "text": "Лук",
+                "isRight": true
+            },
+            {
+                "text": "Пистолет",
+                "isRight": false
+            },
+            {
+                "text": "Пулемёт",
+                "isRight": false
+            },
+            {
+                "text": "Ракета СС-20 ",
+                "isRight": false
+            }
+        ]
+    },
+    {
+        "text": "Как называют микроавтобусы, совершающие поездки по определённым маршрутам?",
+        "price": 200,
+        "isSafeHaven": false,
+        "answers": [
+            {
+                "text": "Маршрутка",
+                "isRight": true
+            },
+            {
+                "text": "Рейсовка",
+                "isRight": false
+            },
+            {
+                "text": "Путёвка",
+                "isRight": false
+            },
+            {
+                "text": "Курсовка",
+                "isRight": false
+            }
+        ]
+    },
+    {
+        "text": "О чём писал Грибоедов, отмечая, что он «нам сладок и приятен»?",
+        "price": 300,
+        "isSafeHaven": false,
+        "answers": [
+            {
+                "text": "Дым Отечества",
+                "isRight": true
+            },
+            {
+                "text": "Дух купечества",
+                "isRight": false
+            },
+            {
+                "text": "Дар пророчества",
+                "isRight": false
+            },
+            {
+                "text": "Пыл девичества",
+                "isRight": false
+            }
+        ]
+    },
+    
+    {
+        "text": "Какого персонажа НЕТ в известной считалке «На золотом крыльце сидели»?",
+        "price": 500,
+        "isSafeHaven": false,
+        "answers": [
+            {
+                "text": "Кузнеца",
+                "isRight": true
+            },
+            {
+                "text": "Сапожника",
+                "isRight": false
+            },
+            {
+                "text": "Короля",
+                "isRight": false
+            },
+            {
+                "text": "Короля",
+                "isRight": false
+            }
+        ]
+    },
+    {
+        "text": "Какой специалист занимается изучением неопознанных летающих объектов?",
+        "price": 1000,
+        "isSafeHaven": true,
+        "answers": [
+            {
+                "text": "Уфолог",
+                "isRight": true
+            },
+            {
+                "text": "Кинолог",
+                "isRight": false
+            },
+            {
+                "text": "Сексопатолог",
+                "isRight": false
+            },
+            {
+                "text": "Психиатр",
+                "isRight": false
+            }
+        ]
+    },
+    {
+        "text": "Как называется разновидность воды, в которой атом водорода замещён его изотопом дейтерием?",
+        "price": 2000,
+        "isSafeHaven": false,
+        "answers": [
+            {
+                "text": "Тяжёлая",
+                "isRight": true
+            },
+            {
+                "text": "Лёгкая",
+                "isRight": false
+            },
+            {
+                "text": "Средняя",
+                "isRight": false
+            },
+            {
+                "text": "Невесомая",
+                "isRight": false
+            }
+        ]
+    },
+    {
+        "text": "Что такое десница?",
+        "price": 4000,
+        "isSafeHaven": false,
+        "answers": [
+            {
+                "text": "Рука",
+                "isRight": true
+            },
+            {
+                "text": "Глаз",
+                "isRight": false
+            },
+            {
+                "text": "Шея",
+                "isRight": false
+            },
+            {
+                "text": "Бровь",
+                "isRight": false
+            }
+        ]
+    },
+    {
+        "text": "В какое море впадает река Урал?",
+        "price": 8000,
+        "isSafeHaven": false,
+        "answers": [
+            {
+                "text": "Каспийское",
+                "isRight": true
+            },
+            {
+                "text": "Азовское",
+                "isRight": false
+            },
+            {
+                "text": "Чёрное",
+                "isRight": false
+            },
+            {
+                "text": "Средиземное",
+                "isRight": false
+            }
+        ]
+    },
+    {
+        "text": "На что кладут руку члены английского общества лысых во время присяги?",
+        "price": 16000,
+        "isSafeHaven": false,
+        "answers": [
+            {
+                "text": "Бильярдный шар",
+                "isRight": true
+            },
+            {
+                "text": "Апельсин",
+                "isRight": false
+            },
+            {
+                "text": "Кокосовый орех",
+                "isRight": false
+            },
+            {
+                "text": "Баскетбольный мяч",
+                "isRight": false
+            }
+        ]
+    },
+    {
+        "text": "Как назывался каменный монолит, на котором установлен памятник Петру I в Санкт-Петербурге?",
+        "price": 32000,
+        "isSafeHaven": true,
+        "answers": [
+            {
+                "text": "Гром-камень",
+                "isRight": true
+            },
+            {
+                "text": "Дом-камень",
+                "isRight": false
+            },
+            {
+                "text": "Гора-камень",
+                "isRight": false
+            },
+            {
+                "text": "Разрыв-камень",
+                "isRight": false
+            }
+        ]
+    },
+    {
+        "text": "Как Пётр Ильич Чайковский назвал свою серенаду для скрипки с оркестром си-бемоль минор?",
+        "price": 64000,
+        "isSafeHaven": false,
+        "answers": [
+            {
+                "text": "Меланхолическая",
+                "isRight": true
+            },
+            {
+                "text": "Холерическая",
+                "isRight": false
+            },
+            {
+                "text": "Флегматическая",
+                "isRight": false
+            },
+            {
+                "text": "Сангвиническая",
+                "isRight": false
+            }
+        ]
+    },
+    {
+        "text": "Какого ордена не было у первого советского космонавта Юрия Гагарина? ",
+        "price": 125000,
+        "isSafeHaven": false,
+        "answers": [
+            {
+                "text": "«Орден двойного дракона» (Китай)",
+                "isRight": true
+            },
+            {
+                "text": "«Плайя Хирон» (Куба)",
+                "isRight": false
+            },
+            {
+                "text": "«Крест Грюнвальда» (Польша)",
+                "isRight": false
+            },
+            {
+                "text": "«Ожерелье Нила» (Египет)",
+                "isRight": false
+            }
+        ]
+    },
+    {
+        "text": "Какое животное имеет второе название — кугуар?",
+        "price": 250000,
+        "isSafeHaven": false,
+        "answers": [
+            {
+                "text": "Пума",
+                "isRight": true
+            },
+            {
+                "text": "Леопард",
+                "isRight": false
+            },
+            {
+                "text": "Оцелот",
+                "isRight": false
+            },
+            {
+                "text": "Пантера",
+                "isRight": false
+            }
+        ]
+    },
+    {
+        "text": "Что в России 19 века делали в дортуаре?",
+        "price": 500000,
+        "isSafeHaven": false,
+        "answers": [
+            {
+                "text": "Спали",
+                "isRight": true
+            },
+            {
+                "text": "Ели",
+                "isRight": false
+            },
+            {
+                "text": "Купались",
+                "isRight": false
+            },
+            {
+                "text": "Ездили верхом ",
+                "isRight": false
+            }
+        ]
+    },
+    {
+        "text": "Какой химический элемент назван в честь злого подземного гнома?",
+        "price": 1000000,
+        "isSafeHaven": false,
+        "answers": [
+            {
+                "text": "Кобальт",
+                "isRight": true
+            },
+            {
+                "text": "Гафний",
+                "isRight": false
+            },
+            {
+                "text": "Бериллий",
+                "isRight": false
+            },
+            {
+                "text": "Теллур",
+                "isRight": false
+            }
+        ]
+    }
+]

@@ -1,23 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Frame 2.png",
+      "filename" : "Rectangle Blue.pdf",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-<<<<<<< HEAD
-=======
-      "filename" : "Frame 2@2x.png",
->>>>>>> developer
+      "filename" : "Rectangle Blue@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-<<<<<<< HEAD
-=======
-      "filename" : "Frame 2@3x.png",
->>>>>>> developer
+      "filename" : "Rectangle Blue@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
