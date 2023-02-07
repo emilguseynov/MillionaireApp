@@ -29,22 +29,22 @@ class MainViewController: UIViewController {
         return label
     }()
     
-    private let startGame: UIButton = {
+    private lazy var startGame: UIButton = {
        let button = UIButton()
         button.setTitleColor(#colorLiteral(red: 0.3739845157, green: 0.8933092952, blue: 0.7061889768, alpha: 1), for: .normal)
         button.setTitle("Start Game", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 32)
-        button.addTarget(MainViewController.self, action: #selector(startGamePressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(startGamePressed), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
-    private let gamesRules: UIButton = {
+    private lazy var gamesRules: UIButton = {
        let button = UIButton()
         button.setTitleColor(#colorLiteral(red: 0.3739845157, green: 0.8933092952, blue: 0.7061889768, alpha: 1), for: .normal)
         button.setTitle("Правила игры", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 32)
-        button.addTarget(MainViewController.self, action: #selector(gamesRulesPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(gamesRulesPressed), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -122,7 +122,7 @@ extension MainViewController {
     }
     
     @objc func gamesRulesPressed(_ sender: UIButton) {
-//        let yourVC = yourViewController()
-//        self.navigationController?.pushViewController(YOURVC, animated: true)
+        let rulesVC = RulesViewController()
+        self.navigationController?.pushViewController(rulesVC, animated: true)
     }
 }
