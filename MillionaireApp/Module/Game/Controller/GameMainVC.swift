@@ -9,31 +9,31 @@ import UIKit
 import SwiftUI
 
 
-struct Question {
-    var text: String
-    var answers: [Answer]
-    
-    static    func fetchQuestions() -> [Question] {
-        return [
-        Question(text: "What year was the year, when first deodorant was invented in our life?", answers: [
-        Answer(text: "1956", isRight: true),
-        Answer(text: "1912", isRight: false),
-        Answer(text: "1942", isRight: false),
-        Answer(text: "1930", isRight: false)
-        ]),
-        Question(text: "What year was the year, when first deodorant was invented in our life?", answers: [
-        Answer(text: "1956", isRight: true),
-        Answer(text: "1912", isRight: false),
-        Answer(text: "1942", isRight: false),
-        Answer(text: "1930", isRight: false)
-        ])]
-    }
-}
-
-struct Answer {
-    var text: String
-    var isRight: Bool
-}
+//struct Question {
+//    var text: String
+//    var answers: [Answer]
+//
+//    static    func fetchQuestions() -> [Question] {
+//        return [
+//        Question(text: "What year was the year, when first deodorant was invented in our life?", answers: [
+//        Answer(text: "1956", isRight: true),
+//        Answer(text: "1912", isRight: false),
+//        Answer(text: "1942", isRight: false),
+//        Answer(text: "1930", isRight: false)
+//        ]),
+//        Question(text: "What year was the year, when first deodorant was invented in our life?", answers: [
+//        Answer(text: "1956", isRight: true),
+//        Answer(text: "1912", isRight: false),
+//        Answer(text: "1942", isRight: false),
+//        Answer(text: "1930", isRight: false)
+//        ])]
+//    }
+//}
+//
+//struct Answer {
+//    var text: String
+//    var isRight: Bool
+//}
 
 
 class GameMainVC: UIViewController {
