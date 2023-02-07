@@ -13,11 +13,6 @@
 		C7BC09B1298F8FAE00787737 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7BC09AF298F8FAE00787737 /* LaunchScreen.storyboard */; };
 		C7BC09C8298F98B800787737 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BC09C7298F98B800787737 /* MainViewController.swift */; };
 		C7BC09CA298FA55B00787737 /* ImagesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BC09C9298FA55B00787737 /* ImagesList.swift */; };
-
-		CE3D38F829906E2B00868B09 /* QuestionsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3D38F729906E2B00868B09 /* QuestionsListViewController.swift */; };
-		CE3D38FA29907A6A00868B09 /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3D38F929907A6A00868B09 /* QuestionTableViewCell.swift */; };
-		CEDD761C2991127100FDFCC1 /* QuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDD761B2991127100FDFCC1 /* QuestionModel.swift */; };
-		CEDD761E2991129400FDFCC1 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDD761D2991129400FDFCC1 /* Images.swift */; };
 		C7BC09CE29911FF500787737 /* questions.json in Resources */ = {isa = PBXBuildFile; fileRef = C7BC09CD29911FF500787737 /* questions.json */; };
 		C7BC09D229912F5A00787737 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BC09D129912F5A00787737 /* Service.swift */; };
 		C7BC09D52991318500787737 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BC09D42991318500787737 /* Model.swift */; };
@@ -32,10 +27,6 @@
 		C7BC09B2298F8FAE00787737 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7BC09C7298F98B800787737 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		C7BC09C9298FA55B00787737 /* ImagesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesList.swift; sourceTree = "<group>"; };
-		CE3D38F729906E2B00868B09 /* QuestionsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QuestionsListViewController.swift; path = "../../../../../../../.Trash/MillionaireApp 2.01.36 AM/MillionaireApp/Module/QuestionList/Controller/QuestionsListViewController.swift"; sourceTree = "<group>"; };
-		CE3D38F929907A6A00868B09 /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTableViewCell.swift; sourceTree = "<group>"; };
-		CEDD761B2991127100FDFCC1 /* QuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionModel.swift; sourceTree = "<group>"; };
-		CEDD761D2991129400FDFCC1 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		C7BC09CD29911FF500787737 /* questions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = questions.json; sourceTree = SOURCE_ROOT; };
 		C7BC09D129912F5A00787737 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		C7BC09D42991318500787737 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -133,7 +124,6 @@
 		C7BC09BD298F92F000787737 /* QuestionList */ = {
 			isa = PBXGroup;
 			children = (
-				CEDD761A2991125400FDFCC1 /* Model */,
 				C7BC09C3298F93F300787737 /* View */,
 				C7BC09C2298F93EC00787737 /* Controller */,
 			);
@@ -172,7 +162,6 @@
 		C7BC09C2298F93EC00787737 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				CE3D38F729906E2B00868B09 /* QuestionsListViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -180,7 +169,6 @@
 		C7BC09C3298F93F300787737 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				CE3D38F929907A6A00868B09 /* QuestionTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -208,11 +196,6 @@
 			path = Delegates;
 			sourceTree = "<group>";
 		};
-		CEDD761A2991125400FDFCC1 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				CEDD761B2991127100FDFCC1 /* QuestionModel.swift */,
-				CEDD761D2991129400FDFCC1 /* Images.swift */,
 		C7BC09D029912F5000787737 /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -300,15 +283,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEDD761C2991127100FDFCC1 /* QuestionModel.swift in Sources */,
-				CEDD761E2991129400FDFCC1 /* Images.swift in Sources */,
 				C7BC09C8298F98B800787737 /* MainViewController.swift in Sources */,
 				C7BC09A5298F8FAC00787737 /* AppDelegate.swift in Sources */,
 				C7BC09D229912F5A00787737 /* Service.swift in Sources */,
 				C7BC09D52991318500787737 /* Model.swift in Sources */,
 				C7BC09CA298FA55B00787737 /* ImagesList.swift in Sources */,
-				CE3D38FA29907A6A00868B09 /* QuestionTableViewCell.swift in Sources */,
-				CE3D38F829906E2B00868B09 /* QuestionsListViewController.swift in Sources */,
 				C7BC09A7298F8FAC00787737 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -448,7 +427,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = W4T587833Q;
+				DEVELOPMENT_TEAM = 6S9Y87TLD6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MillionaireApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -461,7 +440,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = cmdprm.MillionaireApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "Emil-Guseynov.MillionaireApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -479,7 +458,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = W4T587833Q;
+				DEVELOPMENT_TEAM = 6S9Y87TLD6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MillionaireApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -492,7 +471,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = cmdprm.MillionaireApp;
+				PRODUCT_BUNDLE_IDENTIFIER = "Emil-Guseynov.MillionaireApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
