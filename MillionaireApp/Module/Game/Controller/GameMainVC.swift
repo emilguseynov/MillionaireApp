@@ -74,8 +74,6 @@ class GameMainVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        questions = Question.fetchQuestions()
-        
         tableView.dataSource = self
         tableView.delegate = self
         
