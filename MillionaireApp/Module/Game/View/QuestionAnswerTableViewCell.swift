@@ -9,12 +9,10 @@ import UIKit
 
 class QuestionAnswerTableViewCell: UITableViewCell {
 
-    let backgroundImage     = UIImageView()
-    let questionIDLabel     = UILabel()
-    var questionID          = ""
+    let backgroundImageView = UIImageView()
     
+    let questionIDLabel     = UILabel()
     let questionAnswerLabel = UILabel()
-    var questionAnswer      = ""
     
     let questionStack       = UIStackView()
     
@@ -22,8 +20,26 @@ class QuestionAnswerTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        addSubview(questionStack)
+        backgroundImageView.addSubview(questionIDLabel)
+        backgroundImageView.addSubview(questionAnswerLabel)
         setupUI()
+        
+        
+        backgroundColor = .clear
+        layer.borderColor = UIColor.black.cgColor
+        //layer.borderWidth = 1
+        //layer.cornerRadius = 9
+        //clipsToBounds = true
+        layer.masksToBounds = false
+        
+        layer.shadowColor = UIColor.gray.cgColor
+        layer.shadowOpacity = 1
+        layer.cornerRadius = 5
+        layer.shadowOffset = CGSize(width: 10, height: 30)
+
+        
+        contentView.backgroundColor = .white
+            contentView.layer.cornerRadius = 10
     }
     
     required init?(coder: NSCoder) {
@@ -32,40 +48,53 @@ class QuestionAnswerTableViewCell: UITableViewCell {
     
     
     func set(answer: Answer, index: Int) {
-        questionAnswer = answer.text
-        questionID = String(index)
+        
+        let idLabelText: String
+        
+        switch index {
+        case 0: idLabelText = "A"
+        case 1: idLabelText = "B"
+        case 2: idLabelText = "C"
+        case 3: idLabelText = "D"
+        default: idLabelText = "?"
+        }
+        
+        questionAnswerLabel.text = answer.text
+        questionIDLabel.text = idLabelText
     }
 
     func setupUI() {
         
         questionIDLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        //questionIDLabel.text = questionID
         questionIDLabel.font = .systemFont(ofSize: 20, weight: .bold)
-        questionIDLabel.textColor = .black
+        questionIDLabel.textColor = .white
         
         
-       questionAnswerLabel.translatesAutoresizingMaskIntoConstraints = false
-       
-       //questionAnswerLabel.text = questionID
-       questionAnswerLabel.font = .systemFont(ofSize: 20, weight: .bold)
-       questionAnswerLabel.textColor = .black
+        questionAnswerLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        questionAnswerLabel.font = .systemFont(ofSize: 20, weight: .bold)
+        questionAnswerLabel.textColor = .white
         
         
-        questionStack.axis = .horizontal
-        questionStack.distribution = .equalSpacing
-        //topStackView.spacing = 20
+        backgroundImageView.image = UIImage(named: "buttonWithShadow")
+        backgroundImageView.contentMode = .scaleToFill
+        contentView.addSubview(backgroundImageView)
+        backgroundImageView.frame = bounds
         
-        questionStack.addArrangedSubview(questionIDLabel)
-        questionStack.addArrangedSubview(questionAnswerLabel)
-        
-        questionStack.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            questionStack.topAnchor.constraint(equalTo: self.topAnchor),
-            questionStack.bottomAnchor.constraint(equalTo: self.bottomAnchor,constant: -20),
-            questionStack.leadingAnchor.constraint(equalTo: self.leadingAnchor,constant: 20),
-            questionStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20)
+            questionIDLabel.topAnchor.constraint(equalTo: topAnchor),
+            questionIDLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
+            questionIDLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            questionIDLabel.heightAnchor.constraint(equalToConstant: 20),
+            questionIDLabel.widthAnchor.constraint(equalToConstant: 20),
+            
+            questionAnswerLabel.topAnchor.constraint(equalTo: topAnchor),
+            questionAnswerLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
+            questionAnswerLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            questionAnswerLabel.heightAnchor.constraint(equalToConstant: 20),
+            questionAnswerLabel.widthAnchor.constraint(equalToConstant: 80),
         ])
     }
 }

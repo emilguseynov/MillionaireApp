@@ -57,10 +57,12 @@ class GameMainVC: UIViewController {
     
     
     let tableView: UITableView        = UITableView()
+    let cellSpacing: CGFloat          = 10
     
     let eliminateTwoQuestionsButton   = UIButton()
     let audienceHelpButton            = UIButton()
     let callAFriendButton             = UIButton()
+    let buttonSize                    = CGSize(width: 100, height: 80)
     let bottomStackView               = UIStackView()
     
     var questions: [Question]         = []
@@ -77,7 +79,6 @@ class GameMainVC: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        view.backgroundColor = .cyan
         setupUI()
     }
     
@@ -103,36 +104,57 @@ extension GameMainVC: UITableViewDelegate, UITableViewDataSource {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         tableView.register(QuestionAnswerTableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.rowHeight = 50
+        tableView.backgroundColor = UIColor.clear
         
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: middleStackView.bottomAnchor),
-            tableView.bottomAnchor.constraint(equalTo: bottomStackView.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+            tableView.topAnchor.constraint(equalTo: middleStackView.bottomAnchor, constant: 50),
+            tableView.bottomAnchor.constraint(equalTo: bottomStackView.topAnchor, constant: -50),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 40),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -40)
         ])
     }
     
-    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        questions[currentQuestionIndex].answers.count
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        questions[currentQuestionIndex].answers.count
+        1
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        cellSpacing
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = .clear
+        
+        return view
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! QuestionAnswerTableViewCell
         
+        
+       let radius = cell.contentView.layer.cornerRadius
+        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: radius).cgPath
+        
         //cell.questionID = String(indexPath.row)
         
-        cell.set(answer: questions[0].answers[indexPath.row], index: indexPath.row)
+        cell.set(answer: questions[0].answers[indexPath.section], index: indexPath.section)
         //cell.questionAnswer = questions[0].answers[indexPath.row].text
 
+        tableView.rowHeight = 60
 
         return cell
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.contentView.layer.masksToBounds = false
+    }
     
     
 }
@@ -142,11 +164,19 @@ extension GameMainVC {
     
     func setupUI() {
         
+        configureBackgroundImageView()
         setTopStackView()
         setMiddleStackView()
         setBottomStackView()
         configureTableView()
         
+    }
+    
+    func configureBackgroundImageView(){
+        let backgroundImageView = UIImageView()
+        backgroundImageView.image = UIImage(named: "background")
+        view.addSubview(backgroundImageView)
+        backgroundImageView.frame = view.bounds
     }
     
     func configureLogoImageView() {
@@ -242,8 +272,8 @@ extension GameMainVC {
         eliminateTwoQuestionsButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            eliminateTwoQuestionsButton.heightAnchor.constraint(equalToConstant: 80),
-            eliminateTwoQuestionsButton.widthAnchor.constraint(equalToConstant: 100)
+            eliminateTwoQuestionsButton.heightAnchor.constraint(equalToConstant: buttonSize.height),
+            eliminateTwoQuestionsButton.widthAnchor.constraint(equalToConstant: buttonSize.width)
         ])
     }
 
@@ -252,8 +282,8 @@ extension GameMainVC {
         audienceHelpButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            audienceHelpButton.heightAnchor.constraint(equalToConstant: 80),
-            audienceHelpButton.widthAnchor.constraint(equalToConstant: 100)
+            audienceHelpButton.heightAnchor.constraint(equalToConstant: buttonSize.height),
+            audienceHelpButton.widthAnchor.constraint(equalToConstant: buttonSize.width)
         ])
     }
     
@@ -263,8 +293,8 @@ extension GameMainVC {
         callAFriendButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            callAFriendButton.heightAnchor.constraint(equalToConstant: 90),
-            callAFriendButton.widthAnchor.constraint(equalToConstant: 100)
+            callAFriendButton.heightAnchor.constraint(equalToConstant: buttonSize.height),
+            callAFriendButton.widthAnchor.constraint(equalToConstant: buttonSize.width)
         ])
     }
     
