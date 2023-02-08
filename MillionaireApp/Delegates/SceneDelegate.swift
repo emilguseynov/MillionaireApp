@@ -15,8 +15,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        let viewController = MainViewController()
-        let navController = UINavigationController(rootViewController: viewController)
+        let coordinator = GameCoordinator()
+        let navController = UINavigationController()
+        
+        coordinator.navigationController = navController
+        coordinator.dataFetch = Service()
+        
+        coordinator.start()
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene

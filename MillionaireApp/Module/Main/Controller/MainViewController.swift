@@ -7,9 +7,10 @@
 
 import UIKit
 
-//MARK: - objects and ViewDidLoad
+//MARK: - Properties
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, Coordinating {
+    
     private var welcomeLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
@@ -30,7 +31,7 @@ class MainViewController: UIViewController {
         return label
     }()
     
-    private lazy var startGame: UIButton = {
+    private lazy var startGameButton: UIButton = {
        let button = UIButton()
         button.setTitleColor(#colorLiteral(red: 0.3739845157, green: 0.8933092952, blue: 0.7061889768, alpha: 1), for: .normal)
         button.setTitle("Start Game", for: .normal)
@@ -55,6 +56,13 @@ class MainViewController: UIViewController {
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
+    
+    var coordinator: GameCoordinator?
+    
+    var dataFetch: DataFetch?
+    var questionArray: Questions?
+    
+    //  MARK: - LifeCycle
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,7 +81,7 @@ extension MainViewController {
         
         view.addSubview(logoGameImage)
         view.addSubview(gamesRules)
-        view.addSubview(startGame)
+        view.addSubview(startGameButton)
         view.addSubview(gamesNameLabel)
         view.addSubview(welcomeLabel)
     }
@@ -102,8 +110,8 @@ extension MainViewController {
         ])
         
         NSLayoutConstraint.activate([
-            startGame.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            startGame.bottomAnchor.constraint(equalTo: gamesRules.topAnchor, constant: -43)
+            startGameButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            startGameButton.bottomAnchor.constraint(equalTo: gamesRules.topAnchor, constant: -43)
         ])
         
         NSLayoutConstraint.activate([
@@ -117,13 +125,11 @@ extension MainViewController {
 extension MainViewController {
     
     @objc func startGamePressed(_ sender: UIButton) {
-//        let yourVC = yourViewController()
-//        self.navigationController?.pushViewController(YOURVC, animated: true)
-    
+        coordinator?.startGame()
     }
     
     @objc func gamesRulesPressed(_ sender: UIButton) {
-        let rulesVC = RulesViewController()
-        self.navigationController?.pushViewController(rulesVC, animated: true)
+        coordinator?.showRules()
     }
 }
+
