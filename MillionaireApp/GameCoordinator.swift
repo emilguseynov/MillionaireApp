@@ -13,7 +13,7 @@ class GameCoordinator {
     
     var dataFetch: DataFetch?
     var questionArr: [Question]?
-    var questionNumber = 14
+    var questionNumber = 0
     
     func start() {
         let viewControoler = MainViewController()
