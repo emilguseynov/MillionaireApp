@@ -11,7 +11,7 @@ import Foundation
 struct Question: Decodable {
     let text: String
     let price: Int
-    let answers: [Answer]
+    var answers: [Answer]
 }
 
 struct Answer: Decodable {
