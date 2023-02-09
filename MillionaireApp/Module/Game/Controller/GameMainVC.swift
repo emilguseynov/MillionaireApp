@@ -59,6 +59,22 @@ class GameMainVC: UIViewController, Coordinating {
         tableView.delegate = self
         
         setupUI()
+        
+    }
+    
+    
+    // SoundPlayer methods implementation
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        SoundClass.playSound()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        SoundClass.stopSound()
     }
     
 }
