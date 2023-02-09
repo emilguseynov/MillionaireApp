@@ -77,6 +77,22 @@ class GameMainVC: UIViewController, Coordinating {
         tableView.delegate = self
         
         setupUI()
+        
+    }
+    
+    
+    // SoundPlayer methods implementation
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        SoundClass.playSound(resource: .questionTimer)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        SoundClass.stopSound()
     }
     
 }
@@ -167,13 +183,15 @@ extension GameMainVC {
     }
     
     func updateUI() {
-        
-        question = (coordinator?.updateQuestion())!.question
-        questionNumber = (coordinator?.updateQuestion())!.questionNumber
-        
-        questionNumberLabel.text = "Вопрос " + String(questionNumber)
-        questionCostLabel.text = String(question.price) + " RUB"
-        questionTextLabel.text = question.text
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [self] in
+            question = (coordinator?.updateQuestion())!.question
+            questionNumber = (coordinator?.updateQuestion())!.questionNumber
+            
+            questionNumberLabel.text = "Вопрос " + String(questionNumber)
+            questionCostLabel.text = String(question.price) + " RUB"
+            questionTextLabel.text = question.text
+            tableView.reloadData()
+        }
     }
     
     func configureBackgroundImageView(){
