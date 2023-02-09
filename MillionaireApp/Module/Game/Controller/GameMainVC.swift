@@ -33,14 +33,30 @@ class GameMainVC: UIViewController, Coordinating {
     let bottomStackView               = UIStackView()
     
     var question: Question
+    var rightAnswer: Answer!
+    var wrongAnswer: Answer!
     var questionNumber: Int
     
+    
+    
     var coordinator: GameCoordinator?
+    
+    //  help buttons use status
+    var isAudienceHelpUsed = false
+    
     
     //  MARK: - Initializers
     
     init(question: Question, questionNumber: Int) {
         self.question = question
+        for i in question.answers {
+            if i.isRight {
+                rightAnswer = i
+            } else {
+                wrongAnswer = i
+            }
+        }
+        
         self.questionNumber = questionNumber
         self.questionNumberLabel.text = "Вопрос " + String(questionNumber + 1)
         questionCostLabel.text = String(question.price) + " RUB"
@@ -266,6 +282,10 @@ extension GameMainVC {
     func configureAudienceHelpButton() {
         audienceHelpButton.setImage(ImageList.askTheAudience, for: .normal)
         audienceHelpButton.translatesAutoresizingMaskIntoConstraints = false
+        audienceHelpButton.addTarget(
+            self,
+            action: #selector(audienceHelpTapped(sender:)),
+            for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             audienceHelpButton.heightAnchor.constraint(equalToConstant: buttonSize.height),
@@ -309,6 +329,38 @@ extension GameMainVC {
         ])
     }
     
+}
+
+//  MARK: - Help buttons actions
+
+extension GameMainVC {
+    @objc func audienceHelpTapped(sender: UIButton) {
+        
+        if !isAudienceHelpUsed {
+            sender.setImage(ImageList.askTheAudienceUsed, for: .normal)
+            let chanceNumber = Int.random(in: 0...10)
+            if chanceNumber <= 8 {
+                let alert = HelpAlertController(
+                    answer: rightAnswer.text ,
+                    helpType: .audienceHelp,
+                    isUsed: false)
+                present(alert, animated: true)
+            } else {
+                let alert = HelpAlertController(
+                    answer: wrongAnswer.text,
+                    helpType: .audienceHelp,
+                    isUsed: false)
+                present(alert, animated: true)
+            }
+            
+            isAudienceHelpUsed = true
+        } else {
+            let alert = HelpAlertController(
+                helpType: .audienceHelp,
+                isUsed: true)
+            present(alert, animated: true)
+        }
+    }
 }
 
 // MARK: - PreviewProvider
