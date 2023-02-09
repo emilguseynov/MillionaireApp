@@ -35,12 +35,20 @@ class GameCoordinator {
     func selectedAnswer(isRight: Bool) {
         if isRight {
             let questionListVC = QuestionsListViewController()
-            navigationController?.pushViewController(questionListVC, animated: true)
-            
+            navigationController?.pushViewController(questionListVC, animated: true) 
+            self.questionNumber += 1
             // need setup questionListVC to highlight just answered question with green color
             
+            
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                self.presentGameVCWithQuestion(questionNumber: self.questionNumber)
+                
+
+                self.dismissPresentedVC()
+                
+                
+              
+                //self.presentGameVCWithQuestion(questionNumber: self.questionNumber)
             }
         } else {
             // create and present loser screen
@@ -69,6 +77,34 @@ class GameCoordinator {
         }
         
         self.questionNumber += 1
+    }
+    
+    func updateQuestion() -> (question: Question, questionNumber: Int) {
+        guard let question = questionArr?[questionNumber] else {return
+            
+            (Question(text: "Error", price: 0, answers: [Answer(text: "Error", isRight: false)]), 999)
+        }
+        
+        if questionNumber >= 15 {
+            
+            //  create and present winner screen
+            
+            start()
+        }
+        
+        var mixedAnswersQuestion = question
+        mixedAnswersQuestion.answers = question.answers.shuffled()
+        return (question, questionNumber)
+        
+      
+    }
+    
+    private func dismissPresentedVC() {
+        guard let navigationController = self.navigationController else {return}
+        var navigationArray = navigationController.viewControllers
+        navigationArray.removeLast()
+        
+        self.navigationController?.viewControllers = navigationArray
     }
     
 }

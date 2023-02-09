@@ -33,6 +33,7 @@ class GameMainVC: UIViewController, Coordinating {
     let bottomStackView               = UIStackView()
     
     var question: Question
+    var questionNumber: Int
     
     var coordinator: GameCoordinator?
     
@@ -40,6 +41,7 @@ class GameMainVC: UIViewController, Coordinating {
     
     init(question: Question, questionNumber: Int) {
         self.question = question
+        self.questionNumber = questionNumber
         self.questionNumberLabel.text = "Вопрос " + String(questionNumber + 1)
         questionCostLabel.text = String(question.price) + " RUB"
         
@@ -128,9 +130,12 @@ extension GameMainVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         coordinator?.selectedAnswer(isRight: question.answers[indexPath.section].isRight)
+    tableView.reloadData()
+        updateUI()
     }
     
 }
+
 
 //MARK: - UI Setup w/o TableView
 extension GameMainVC {
@@ -143,6 +148,16 @@ extension GameMainVC {
         setBottomStackView()
         configureTableView()
         
+    }
+    
+    func updateUI() {
+        
+        question = (coordinator?.updateQuestion())!.question
+        questionNumber = (coordinator?.updateQuestion())!.questionNumber
+        
+        questionNumberLabel.text = "Вопрос " + String(questionNumber)
+        questionCostLabel.text = String(question.price) + " RUB"
+        questionTextLabel.text = question.text
     }
     
     func configureBackgroundImageView(){
@@ -173,6 +188,8 @@ extension GameMainVC {
         questionTextLabel.textAlignment = .left
         questionTextLabel.lineBreakMode = .byWordWrapping
         questionTextLabel.numberOfLines = 0
+        //questionTextLabel.minimumFontSize = 8;
+        questionTextLabel.adjustsFontSizeToFitWidth = true
         
     }
     
