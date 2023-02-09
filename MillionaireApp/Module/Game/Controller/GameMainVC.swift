@@ -167,13 +167,15 @@ extension GameMainVC {
     }
     
     func updateUI() {
-        
-        question = (coordinator?.updateQuestion())!.question
-        questionNumber = (coordinator?.updateQuestion())!.questionNumber
-        
-        questionNumberLabel.text = "Вопрос " + String(questionNumber)
-        questionCostLabel.text = String(question.price) + " RUB"
-        questionTextLabel.text = question.text
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [self] in
+            question = (coordinator?.updateQuestion())!.question
+            questionNumber = (coordinator?.updateQuestion())!.questionNumber
+            
+            questionNumberLabel.text = "Вопрос " + String(questionNumber)
+            questionCostLabel.text = String(question.price) + " RUB"
+            questionTextLabel.text = question.text
+            tableView.reloadData()
+        }
     }
     
     func configureBackgroundImageView(){
