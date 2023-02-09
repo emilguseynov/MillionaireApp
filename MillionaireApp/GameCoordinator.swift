@@ -60,6 +60,32 @@ class GameCoordinator {
         
     }
     
+    
+    
+    func updateQuestion() -> (question: Question, questionNumber: Int) {
+        guard let question = questionArr?[questionNumber] else {return
+            
+            (Question(text: "Error", price: 0, answers: [Answer(text: "Error", isRight: false)]), 999)
+        }
+        
+        if questionNumber >= 15 {
+            
+            //  create and present winner screen
+            
+            start()
+        }
+        
+        var mixedAnswersQuestion = question
+        mixedAnswersQuestion.answers = question.answers.shuffled()
+        return (question, questionNumber)
+        
+      
+    }
+    
+    
+    
+    //  MARK: - Private methods
+    
     private func presentGameVCWithQuestion(questionNumber: Int) {
         
         if questionNumber >= 15 {
@@ -83,6 +109,7 @@ class GameCoordinator {
         self.questionNumber += 1
     }
     
+
     func updateQuestion() -> (question: Question, questionNumber: Int) {
         
         
@@ -99,6 +126,7 @@ class GameCoordinator {
             
         
     }
+
     
     private func dismissPresentedVC() {
         guard let navigationController = self.navigationController else {return}
