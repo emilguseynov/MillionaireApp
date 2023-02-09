@@ -22,6 +22,7 @@ class GameCoordinator {
     }
     
     func startGame() {
+        SoundClass.stopSound()
         dataFetch?.getQuestions(completion: { questions in
             self.questionArr = questions
             self.presentGameVCWithQuestion(questionNumber: 0)
@@ -39,19 +40,14 @@ class GameCoordinator {
             self.questionNumber += 1
             // need setup questionListVC to highlight just answered question with green color
             
-            
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
                 
-
                 self.dismissPresentedVC()
-                
-                
-              
                 //self.presentGameVCWithQuestion(questionNumber: self.questionNumber)
             }
         } else {
             // create and present loser screen
+            SoundClass.playSound(resource: .answerIsWrong)
            startGame()
         }
     }

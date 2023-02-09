@@ -70,7 +70,7 @@ class GameMainVC: UIViewController, Coordinating {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        SoundClass.playSound()
+        SoundClass.playSound(resource: .questionTimer)
     }
     
     override func viewDidDisappear(_ animated: Bool) {

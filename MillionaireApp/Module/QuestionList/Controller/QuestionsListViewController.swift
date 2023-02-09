@@ -148,3 +148,21 @@ extension QuestionsListViewController: UITableViewDataSource {
         return cell
     }
 }
+
+
+//MARK: - Sound extension
+
+extension QuestionsListViewController {
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        SoundClass.playSound(resource: .answerIsCorrect)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        SoundClass.stopSound()
+    }
+}
