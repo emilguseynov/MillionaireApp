@@ -42,6 +42,7 @@ class GameMainVC: UIViewController, Coordinating {
     //  help buttons use status
     var isAudienceHelpUsed = false
     var isCallAFriendUsed = false
+    var isFiftyFiftyUsed = false
     
     
     //  MARK: - Initializers
@@ -290,6 +291,10 @@ extension GameMainVC {
     func configureEliminateTwoQuestionsButton() {
         eliminateTwoQuestionsButton.setImage(ImageList.fifty, for: .normal)
         eliminateTwoQuestionsButton.translatesAutoresizingMaskIntoConstraints = false
+        eliminateTwoQuestionsButton.addTarget(
+            self,
+            action: #selector(fiftyFiftyButtonTapped(sender:)),
+            for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             eliminateTwoQuestionsButton.heightAnchor.constraint(equalToConstant: buttonSize.height),
@@ -377,6 +382,17 @@ extension GameMainVC {
         isCallAFriendUsed = true
         present(alert, animated: true)
         
+    }
+    
+    @objc func fiftyFiftyButtonTapped(sender: UIButton) {
+        sender.setImage(ImageList.fiftyUsed, for: .normal)
+//        let currentQuestionIndex = coordinator?.questionArr?.index(before: coordinator!.questionNumber)
+        let alert = HelpAlertController(
+            answers: question.answers,
+            helpType: .fiftyFifty,
+            isUsed: isFiftyFiftyUsed)
+        isFiftyFiftyUsed = true
+        present(alert, animated: true)
     }
 }
 

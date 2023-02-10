@@ -25,11 +25,15 @@ class HelpAlertController: UIAlertController {
     }
     
     private func setupIfAvailable(_ answers: [Answer], _ helpType: HelpAlertController.HelpType) {
+        
+        var wrongAnswers = [Any]()
+        
         for i in answers {
             if i.isRight {
                 rightAnswer = i.text
             } else {
                 wrongAnswer = i.text
+                wrongAnswers.append(i.text)
             }
         }
         
@@ -50,11 +54,17 @@ class HelpAlertController: UIAlertController {
             } else {
                 message = "правильный ответ \(wrongAnswer)"
             }
+        case .fiftyFifty:
+            title = "Два неправильных ответа:"
+            wrongAnswers.remove(at: (0...2).randomElement()!)
+            message = "\(wrongAnswers.first!) и \(wrongAnswers.last!)"
+           
         }
     }
     
     enum HelpType {
         case audienceHelp
         case callAFriend
+        case fiftyFifty
     }
 }
