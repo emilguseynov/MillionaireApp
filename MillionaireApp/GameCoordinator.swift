@@ -37,6 +37,10 @@ class GameCoordinator {
         
         SoundClass.playSound(resource: .intrigue)
         
+        if let gameVC = navigationController?.viewControllers.last as? GameMainVC {
+            gameVC.tableView.isUserInteractionEnabled = false
+        }
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
             SoundClass.stopSound()
             if isRight {

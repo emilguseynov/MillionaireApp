@@ -163,8 +163,9 @@ extension GameMainVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         coordinator?.selectedAnswer(isRight: question.answers[indexPath.section].isRight)
-    tableView.reloadData()
+        tableView.reloadData()
         updateUI()
+        
     }
     
 }
@@ -192,6 +193,7 @@ extension GameMainVC {
             questionCostLabel.text = String(question.price) + " RUB"
             questionTextLabel.text = question.text
             tableView.reloadData()
+            tableView.isUserInteractionEnabled = true
         }
     }
     
