@@ -43,6 +43,7 @@ class GameMainVC: UIViewController, Coordinating {
     
     //  help buttons use status
     var isAudienceHelpUsed = false
+    var isCallAFriendUsed = false
     
     
     //  MARK: - Initializers
@@ -315,6 +316,10 @@ extension GameMainVC {
     func configureCallAFriendButton() {
         callAFriendButton.setImage(ImageList.phoneCall, for: .normal)
         callAFriendButton.translatesAutoresizingMaskIntoConstraints = false
+        callAFriendButton.addTarget(
+            self,
+            action: #selector(callAFriendTapped(sender:)),
+            for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             callAFriendButton.heightAnchor.constraint(equalToConstant: buttonSize.height),
@@ -359,7 +364,7 @@ extension GameMainVC {
             let chanceNumber = Int.random(in: 0...10)
             if chanceNumber <= 8 {
                 let alert = HelpAlertController(
-                    answer: rightAnswer.text ,
+                    answer: rightAnswer.text,
                     helpType: .audienceHelp,
                     isUsed: false)
                 present(alert, animated: true)
@@ -375,6 +380,34 @@ extension GameMainVC {
         } else {
             let alert = HelpAlertController(
                 helpType: .audienceHelp,
+                isUsed: true)
+            present(alert, animated: true)
+        }
+    }
+    
+    @objc func callAFriendTapped(sender: UIButton) {
+        
+        if !isCallAFriendUsed {
+            sender.setImage(ImageList.phoneCallUsed, for: .normal)
+            let chanceNumber = Int.random(in: 0...10)
+            if chanceNumber <= 8 {
+                let alert = HelpAlertController(
+                    answer: rightAnswer.text,
+                    helpType: .callAFriend,
+                    isUsed: false)
+                present(alert, animated: true)
+            } else {
+                let alert = HelpAlertController(
+                    answer: wrongAnswer.text,
+                    helpType: .callAFriend,
+                    isUsed: false)
+                present(alert, animated: true)
+            }
+            
+            isAudienceHelpUsed = true
+        } else {
+            let alert = HelpAlertController(
+                helpType: .callAFriend,
                 isUsed: true)
             present(alert, animated: true)
         }
