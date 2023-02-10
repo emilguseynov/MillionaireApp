@@ -362,7 +362,7 @@ extension GameMainVC {
         if !isAudienceHelpUsed {
             sender.setImage(ImageList.askTheAudienceUsed, for: .normal)
             let chanceNumber = Int.random(in: 0...10)
-            if chanceNumber <= 8 {
+            if chanceNumber <= 7 {
                 let alert = HelpAlertController(
                     answer: rightAnswer.text,
                     helpType: .audienceHelp,
@@ -404,7 +404,7 @@ extension GameMainVC {
                 present(alert, animated: true)
             }
             
-            isAudienceHelpUsed = true
+            isCallAFriendUsed = true
         } else {
             let alert = HelpAlertController(
                 helpType: .callAFriend,
