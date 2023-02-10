@@ -33,8 +33,6 @@ class GameMainVC: UIViewController, Coordinating {
     let bottomStackView               = UIStackView()
     
     var question: Question
-    var rightAnswer: Answer!
-    var wrongAnswer: Answer!
     var questionNumber: Int
     
     
@@ -48,16 +46,6 @@ class GameMainVC: UIViewController, Coordinating {
     
     //  MARK: - Initializers
     
-    private func updateRightAndWrong(_ question: Question) {
-        for i in question.answers {
-            if i.isRight {
-                rightAnswer = i
-            } else {
-                wrongAnswer = i
-            }
-        }
-    }
-    
     init(question: Question, questionNumber: Int) {
         self.question = question
         
@@ -66,7 +54,6 @@ class GameMainVC: UIViewController, Coordinating {
         questionCostLabel.text = String(question.price) + " RUB"
         
         super.init(nibName: nil, bundle: nil)
-        updateRightAndWrong(question)
     }
     
     required init?(coder: NSCoder) {
@@ -199,7 +186,6 @@ extension GameMainVC {
             question = (coordinator?.updateQuestion())!.question
             questionNumber = (coordinator?.updateQuestion())!.questionNumber
             
-            updateRightAndWrong(question)
             questionNumberLabel.text = "Вопрос " + String(questionNumber)
             questionCostLabel.text = String(question.price) + " RUB"
             questionTextLabel.text = question.text
@@ -371,59 +357,26 @@ extension GameMainVC {
 
 extension GameMainVC {
     @objc func audienceHelpTapped(sender: UIButton) {
+        sender.setImage(ImageList.askTheAudienceUsed, for: .normal)
         
-        if !isAudienceHelpUsed {
-            sender.setImage(ImageList.askTheAudienceUsed, for: .normal)
-            let chanceNumber = Int.random(in: 0...10)
-            if chanceNumber <= 7 {
-                let alert = HelpAlertController(
-                    answer: rightAnswer.text,
-                    helpType: .audienceHelp,
-                    isUsed: false)
-                present(alert, animated: true)
-            } else {
-                let alert = HelpAlertController(
-                    answer: wrongAnswer.text,
-                    helpType: .audienceHelp,
-                    isUsed: false)
-                present(alert, animated: true)
-            }
-            
-            isAudienceHelpUsed = true
-        } else {
-            let alert = HelpAlertController(
-                helpType: .audienceHelp,
-                isUsed: true)
-            present(alert, animated: true)
-        }
+        let alert = HelpAlertController(
+            answers: question.answers,
+            helpType: .audienceHelp,
+            isUsed: isAudienceHelpUsed)
+        isAudienceHelpUsed = true
+        present(alert, animated: true)
     }
     
     @objc func callAFriendTapped(sender: UIButton) {
+        sender.setImage(ImageList.phoneCallUsed, for: .normal)
         
-        if !isCallAFriendUsed {
-            sender.setImage(ImageList.phoneCallUsed, for: .normal)
-            let chanceNumber = Int.random(in: 0...10)
-            if chanceNumber <= 8 {
-                let alert = HelpAlertController(
-                    answer: rightAnswer.text,
-                    helpType: .callAFriend,
-                    isUsed: false)
-                present(alert, animated: true)
-            } else {
-                let alert = HelpAlertController(
-                    answer: wrongAnswer.text,
-                    helpType: .callAFriend,
-                    isUsed: false)
-                present(alert, animated: true)
-            }
-            
-            isCallAFriendUsed = true
-        } else {
-            let alert = HelpAlertController(
-                helpType: .callAFriend,
-                isUsed: true)
-            present(alert, animated: true)
-        }
+        let alert = HelpAlertController(
+            answers: question.answers,
+            helpType: .callAFriend,
+            isUsed: isCallAFriendUsed)
+        isCallAFriendUsed = true
+        present(alert, animated: true)
+        
     }
 }
 

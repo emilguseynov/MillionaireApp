@@ -8,29 +8,50 @@
 import UIKit
 
 class HelpAlertController: UIAlertController {
-    convenience init(answer: String = "", helpType: HelpType, isUsed: Bool) {
+    
+    var rightAnswer = String()
+    var wrongAnswer = String()
+    
+    
+    convenience init(answers: [Answer], helpType: HelpType, isUsed: Bool) {
         self.init(title: nil, message: nil, preferredStyle: .alert)
         
         if isUsed {
-            self.title = "Вы уже использовали эту подсказку"
+            title = "Вы уже использовали эту подсказку"
         } else {
-            switch helpType {
-            case .audienceHelp:
-                self.title = "Зрители считают что"
-            case .callAFriend:
-                self.title = "Ваш друг считает что"
-            }
-            self.message = "правильный ответ: \(answer)"
+            setupIfAvailable(answers, helpType)
         }
-        
-        addAction(
-            UIAlertAction(
-                title: "Ок",
-                style: .cancel))
-        
+        addAction(UIAlertAction(title: "Ок", style: .cancel))
     }
     
-    
+    private func setupIfAvailable(_ answers: [Answer], _ helpType: HelpAlertController.HelpType) {
+        for i in answers {
+            if i.isRight {
+                rightAnswer = i.text
+            } else {
+                wrongAnswer = i.text
+            }
+        }
+        
+        let chanceNumber = Int.random(in: 0...10)
+        
+        switch helpType {
+        case .audienceHelp:
+            title = "Зрители считают что"
+            if chanceNumber <= 8 {
+                message = "правильный ответ \(rightAnswer)"
+            } else {
+                message = "правильный ответ \(wrongAnswer)"
+            }
+        case .callAFriend:
+            title = "Ваш друг считает что"
+            if chanceNumber <= 7 {
+                message = "правильный ответ \(rightAnswer)"
+            } else {
+                message = "правильный ответ \(wrongAnswer)"
+            }
+        }
+    }
     
     enum HelpType {
         case audienceHelp
