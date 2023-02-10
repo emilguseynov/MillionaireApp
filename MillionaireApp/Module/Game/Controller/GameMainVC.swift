@@ -81,6 +81,12 @@ class GameMainVC: UIViewController, Coordinating {
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if isMovingFromParent {
+            coordinator?.backButtonTapped()
+        }
+    }
     
     // SoundPlayer methods implementation
     
