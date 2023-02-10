@@ -19,6 +19,8 @@ class GameCoordinator {
         let viewControoler = MainViewController()
         viewControoler.coordinator = self
         navigationController?.setViewControllers([viewControoler], animated: false)
+        questionNumber = 0
+        
     }
     
     func startGame() {
@@ -37,6 +39,10 @@ class GameCoordinator {
         
         SoundClass.playSound(resource: .intrigue)
         
+        if let gameVC = navigationController?.viewControllers.last as? GameMainVC {
+            gameVC.tableView.isUserInteractionEnabled = false
+        }
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
             SoundClass.stopSound()
             if isRight {
@@ -53,24 +59,21 @@ class GameCoordinator {
             } else {
                 // create and present loser screen
                 SoundClass.playSound(resource: .answerIsWrong)
-                self.startGame()
+                self.start()
             }
         }
         
         
     }
     
+    func backButtonTapped() {
+        questionNumber = 0
+    }
+    
     //  MARK: - Private methods
     
     private func presentGameVCWithQuestion(questionNumber: Int) {
         
-        if questionNumber >= 15 {
-            
-            //  create and present winner screen
-            
-            start()
-            return
-        }
         if let question = questionArr?[questionNumber] {
             var mixedAnswersQuestion = question
             mixedAnswersQuestion.answers = question.answers.shuffled()
@@ -85,24 +88,25 @@ class GameCoordinator {
         self.questionNumber += 1
     }
     
-
+    
     func updateQuestion() -> (question: Question, questionNumber: Int) {
+        print("updateQuestion method called")
         
+        guard let question = questionArr?[questionNumber] else {return
+            (Question(text: "Error", price: 0, answers: [Answer(text: "Error", isRight: false)]), 999)
+        }
+        if questionNumber >= 15 {
+            //  create and present winner screen
+            start()
+        }
         
-            guard let question = questionArr?[questionNumber] else {return
-                (Question(text: "Error", price: 0, answers: [Answer(text: "Error", isRight: false)]), 999)
-            }
-            if questionNumber >= 15 {
-                //  create and present winner screen
-                start()
-            }
-            var mixedAnswersQuestion = question
-            mixedAnswersQuestion.answers = question.answers.shuffled()
-            return (question, questionNumber)
-            
+        var mixedAnswersQuestion = question
+        mixedAnswersQuestion.answers = question.answers.shuffled()
+        return (mixedAnswersQuestion, questionNumber)
+        
         
     }
-
+    
     
     private func dismissPresentedVC() {
         guard let navigationController = self.navigationController else {return}
