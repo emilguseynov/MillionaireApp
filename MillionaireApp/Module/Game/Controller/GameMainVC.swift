@@ -48,8 +48,7 @@ class GameMainVC: UIViewController, Coordinating {
     
     //  MARK: - Initializers
     
-    init(question: Question, questionNumber: Int) {
-        self.question = question
+    private func updateRightAndWrong(_ question: Question) {
         for i in question.answers {
             if i.isRight {
                 rightAnswer = i
@@ -57,12 +56,17 @@ class GameMainVC: UIViewController, Coordinating {
                 wrongAnswer = i
             }
         }
+    }
+    
+    init(question: Question, questionNumber: Int) {
+        self.question = question
         
         self.questionNumber = questionNumber
         self.questionNumberLabel.text = "Вопрос " + String(questionNumber + 1)
         questionCostLabel.text = String(question.price) + " RUB"
         
         super.init(nibName: nil, bundle: nil)
+        updateRightAndWrong(question)
     }
     
     required init?(coder: NSCoder) {
@@ -195,6 +199,7 @@ extension GameMainVC {
             question = (coordinator?.updateQuestion())!.question
             questionNumber = (coordinator?.updateQuestion())!.questionNumber
             
+            updateRightAndWrong(question)
             questionNumberLabel.text = "Вопрос " + String(questionNumber)
             questionCostLabel.text = String(question.price) + " RUB"
             questionTextLabel.text = question.text
