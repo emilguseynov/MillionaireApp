@@ -11,11 +11,21 @@
 		607CFD192991A3E600930BEB /* RulesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607CFD182991A3E600930BEB /* RulesModel.swift */; };
 		6F8034842990292B008F7026 /* GameMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8034832990292B008F7026 /* GameMainVC.swift */; };
 		6F80348629924574008F7026 /* QuestionAnswerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F80348529924574008F7026 /* QuestionAnswerTableViewCell.swift */; };
+
 		C5D483372995106800ACC682 /* LoseGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D483362995106800ACC682 /* LoseGameVC.swift */; };
 		C5D483392995138000ACC682 /* ColorList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D483382995138000ACC682 /* ColorList.swift */; };
 		C5D4833F2996EDC000ACC682 /* WinGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D4833E2996EDC000ACC682 /* WinGameVC.swift */; };
 		C5D4834229981DB100ACC682 /* WinVCSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5D4834129981DB100ACC682 /* WinVCSound.mp3 */; };
+
+		6FF331312994E5F200DCAFB7 /* SoundClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF331302994E5F200DCAFB7 /* SoundClass.swift */; };
+		6FF331332994EAAA00DCAFB7 /* question-timer.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6FF331322994EAA900DCAFB7 /* question-timer.mp3 */; };
+		6FF331562995474000DCAFB7 /* otvet-vernyiy-5267_2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6FF331552995474000DCAFB7 /* otvet-vernyiy-5267_2.mp3 */; };
+		6FF331582995476B00DCAFB7 /* zvuk-nepravilnogo-otveta-vkto-hochet-stat-millionerom-5270_6.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6FF331572995476B00DCAFB7 /* zvuk-nepravilnogo-otveta-vkto-hochet-stat-millionerom-5270_6.mp3 */; };
+		6FF3315A299547AA00DCAFB7 /* otvet-prinyat-teper-govorit-veduschiy-5266-1_7.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6FF33159299547AA00DCAFB7 /* otvet-prinyat-teper-govorit-veduschiy-5266-1_7.mp3 */; };
+		6FF3315C299548F600DCAFB7 /* bolee-kachestvennyiy-zvuk-mojet-on-vam-nujen-5284_8.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6FF3315B299548F600DCAFB7 /* bolee-kachestvennyiy-zvuk-mojet-on-vam-nujen-5284_8.mp3 */; };
+
 		C797B0E72993BF49000C6959 /* GameCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C797B0E62993BF49000C6959 /* GameCoordinator.swift */; };
+		C7A1F0DE2995501B003E7C0A /* HelpAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A1F0DD2995501B003E7C0A /* HelpAlertController.swift */; };
 		C7BC09A5298F8FAC00787737 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BC09A4298F8FAC00787737 /* AppDelegate.swift */; };
 		C7BC09A7298F8FAC00787737 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BC09A6298F8FAC00787737 /* SceneDelegate.swift */; };
 		C7BC09AE298F8FAE00787737 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7BC09AD298F8FAE00787737 /* Assets.xcassets */; };
@@ -36,11 +46,21 @@
 		607CFD182991A3E600930BEB /* RulesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesModel.swift; sourceTree = "<group>"; };
 		6F8034832990292B008F7026 /* GameMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMainVC.swift; sourceTree = "<group>"; };
 		6F80348529924574008F7026 /* QuestionAnswerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionAnswerTableViewCell.swift; sourceTree = "<group>"; };
+
 		C5D483362995106800ACC682 /* LoseGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseGameVC.swift; sourceTree = "<group>"; };
 		C5D483382995138000ACC682 /* ColorList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorList.swift; sourceTree = "<group>"; };
 		C5D4833E2996EDC000ACC682 /* WinGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinGameVC.swift; sourceTree = "<group>"; };
 		C5D4834129981DB100ACC682 /* WinVCSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WinVCSound.mp3; sourceTree = "<group>"; };
+
+		6FF331302994E5F200DCAFB7 /* SoundClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundClass.swift; sourceTree = "<group>"; };
+		6FF331322994EAA900DCAFB7 /* question-timer.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "question-timer.mp3"; sourceTree = "<group>"; };
+		6FF331552995474000DCAFB7 /* otvet-vernyiy-5267_2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "otvet-vernyiy-5267_2.mp3"; sourceTree = "<group>"; };
+		6FF331572995476B00DCAFB7 /* zvuk-nepravilnogo-otveta-vkto-hochet-stat-millionerom-5270_6.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "zvuk-nepravilnogo-otveta-vkto-hochet-stat-millionerom-5270_6.mp3"; sourceTree = "<group>"; };
+		6FF33159299547AA00DCAFB7 /* otvet-prinyat-teper-govorit-veduschiy-5266-1_7.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "otvet-prinyat-teper-govorit-veduschiy-5266-1_7.mp3"; sourceTree = "<group>"; };
+		6FF3315B299548F600DCAFB7 /* bolee-kachestvennyiy-zvuk-mojet-on-vam-nujen-5284_8.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "bolee-kachestvennyiy-zvuk-mojet-on-vam-nujen-5284_8.mp3"; sourceTree = "<group>"; };
+
 		C797B0E62993BF49000C6959 /* GameCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCoordinator.swift; sourceTree = "<group>"; };
+		C7A1F0DD2995501B003E7C0A /* HelpAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpAlertController.swift; sourceTree = "<group>"; };
 		C7BC09A1298F8FAC00787737 /* MillionaireApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MillionaireApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7BC09A4298F8FAC00787737 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C7BC09A6298F8FAC00787737 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +97,7 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+
 		C5D483322995101600ACC682 /* LoseGame */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +134,16 @@
 			isa = PBXGroup;
 			children = (
 				C5D4834129981DB100ACC682 /* WinVCSound.mp3 */,
+
+		6FF3315D29954A7700DCAFB7 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				6FF331322994EAA900DCAFB7 /* question-timer.mp3 */,
+				6FF331552995474000DCAFB7 /* otvet-vernyiy-5267_2.mp3 */,
+				6FF331572995476B00DCAFB7 /* zvuk-nepravilnogo-otveta-vkto-hochet-stat-millionerom-5270_6.mp3 */,
+				6FF33159299547AA00DCAFB7 /* otvet-prinyat-teper-govorit-veduschiy-5266-1_7.mp3 */,
+				6FF3315B299548F600DCAFB7 /* bolee-kachestvennyiy-zvuk-mojet-on-vam-nujen-5284_8.mp3 */,
+
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -230,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				6F8034832990292B008F7026 /* GameMainVC.swift */,
+				C7A1F0DD2995501B003E7C0A /* HelpAlertController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -294,6 +326,8 @@
 			isa = PBXGroup;
 			children = (
 				C7BC09D42991318500787737 /* Model.swift */,
+				6FF331302994E5F200DCAFB7 /* SoundClass.swift */,
+				6FF3315D29954A7700DCAFB7 /* Sounds */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -365,9 +399,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+
 				C5D4834229981DB100ACC682 /* WinVCSound.mp3 in Resources */,
+
+				6FF331332994EAAA00DCAFB7 /* question-timer.mp3 in Resources */,
+				6FF3315A299547AA00DCAFB7 /* otvet-prinyat-teper-govorit-veduschiy-5266-1_7.mp3 in Resources */,
+				6FF331562995474000DCAFB7 /* otvet-vernyiy-5267_2.mp3 in Resources */,
+				6FF331582995476B00DCAFB7 /* zvuk-nepravilnogo-otveta-vkto-hochet-stat-millionerom-5270_6.mp3 in Resources */,
+
 				C7BC09CE29911FF500787737 /* questions.json in Resources */,
 				C7BC09B1298F8FAE00787737 /* LaunchScreen.storyboard in Resources */,
+				6FF3315C299548F600DCAFB7 /* bolee-kachestvennyiy-zvuk-mojet-on-vam-nujen-5284_8.mp3 in Resources */,
 				C7BC09AE298F8FAE00787737 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,8 +431,12 @@
 				C5D4833F2996EDC000ACC682 /* WinGameVC.swift in Sources */,
 				6F80348629924574008F7026 /* QuestionAnswerTableViewCell.swift in Sources */,
 				C7BC09A5298F8FAC00787737 /* AppDelegate.swift in Sources */,
+
 				C5D483372995106800ACC682 /* LoseGameVC.swift in Sources */,
+
+				C7A1F0DE2995501B003E7C0A /* HelpAlertController.swift in Sources */,
 				C7BC09D229912F5A00787737 /* Service.swift in Sources */,
+				6FF331312994E5F200DCAFB7 /* SoundClass.swift in Sources */,
 				C7BC09D52991318500787737 /* Model.swift in Sources */,
 				C7BC09CA298FA55B00787737 /* ImagesList.swift in Sources */,
 				C5D483392995138000ACC682 /* ColorList.swift in Sources */,

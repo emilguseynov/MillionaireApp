@@ -14,14 +14,18 @@ class GameCoordinator {
     var dataFetch: DataFetch?
     var questionArr: [Question]?
     var questionNumber = 0
+    var moneyEarned = 0
     
     func start() {
         let viewControoler = MainViewController()
         viewControoler.coordinator = self
         navigationController?.setViewControllers([viewControoler], animated: false)
+        questionNumber = 0
+        
     }
     
     func startGame() {
+        SoundClass.stopSound()
         dataFetch?.getQuestions(completion: { questions in
             self.questionArr = questions
             self.presentGameVCWithQuestion(questionNumber: 0)
@@ -38,24 +42,59 @@ class GameCoordinator {
 
     
     func selectedAnswer(isRight: Bool) {
-        if isRight {
-            let questionListVC = QuestionsListViewController()
-            navigationController?.pushViewController(questionListVC, animated: true)
-            
-            // need setup questionListVC to highlight just answered question with green color
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                self.presentGameVCWithQuestion(questionNumber: self.questionNumber)
+        
+        SoundClass.playSound(resource: .intrigue)
+        
+        if let gameVC = navigationController?.viewControllers.last as? GameMainVC {
+            gameVC.tableView.isUserInteractionEnabled = false
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            SoundClass.stopSound()
+            if isRight {
+                let questionListVC = QuestionsListViewController()
+                self.navigationController?.pushViewController(questionListVC, animated: true)
+                self.questionNumber += 1
+                
+                self.moneyEarned += qlist[qlist.count-self.questionNumber].amount
+                
+                // need setup questionListVC to highlight just answered question with green color
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                    
+                    self.dismissPresentedVC()
+                    //self.presentGameVCWithQuestion(questionNumber: self.questionNumber)
+                }
+            } else {
+                // create and present loser screen
+                SoundClass.playSound(resource: .answerIsWrong)
+                self.start()
             }
+
         } else {
             let loseGameVC = LoseGameVC()
             loseGameVC.coordinator = self
             navigationController?.pushViewController(loseGameVC, animated: true)
+
         }
+        
+        
     }
+    
+    func backButtonTapped() {
+        questionNumber = 0
+    }
+    
+    func goToWinnerScreen(questionsAnswered: Int, moneyWon: Int) {
+        
+        // to be implemented
+    }
+    
+    //  MARK: - Private methods
     
     private func presentGameVCWithQuestion(questionNumber: Int) {
         
+
         if questionNumber >= 15 {
             
             let winGameVC = WinGameVC()
@@ -64,6 +103,7 @@ class GameCoordinator {
             
             return
         }
+
         if let question = questionArr?[questionNumber] {
             var mixedAnswersQuestion = question
             mixedAnswersQuestion.answers = question.answers.shuffled()
@@ -78,7 +118,40 @@ class GameCoordinator {
         self.questionNumber += 1
     }
     
+    
+    func updateQuestion() -> (question: Question, questionNumber: Int) {
+        print("updateQuestion method called")
+        
+        guard let question = questionArr?[questionNumber] else {return
+            (Question(text: "Error", price: 0, answers: [Answer(text: "Error", isRight: false)]), 999)
+        }
+        if questionNumber >= 15 {
+            //  create and present winner screen
+            goToWinnerScreen(questionsAnswered: 15, moneyWon: moneyEarned)
+            start()
+        }
+        
+        var mixedAnswersQuestion = question
+        mixedAnswersQuestion.answers = question.answers.shuffled()
+        return (mixedAnswersQuestion, questionNumber)
+        
+        
+    }
+    
+    
+    private func dismissPresentedVC() {
+        guard let navigationController = self.navigationController else {return}
+        var navigationArray = navigationController.viewControllers
+        navigationArray.removeLast()
+        
+        self.navigationController?.viewControllers = navigationArray
+    }
+ 
+    
+ 
+    
 }
+
 
 protocol Coordinating {
     var coordinator: GameCoordinator? { get set }

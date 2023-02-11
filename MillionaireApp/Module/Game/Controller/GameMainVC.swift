@@ -33,13 +33,24 @@ class GameMainVC: UIViewController, Coordinating {
     let bottomStackView               = UIStackView()
     
     var question: Question
+    var questionNumber: Int
+    
+    
     
     var coordinator: GameCoordinator?
+    
+    //  help buttons use status
+    var isAudienceHelpUsed = false
+    var isCallAFriendUsed = false
+    var isFiftyFiftyUsed = false
+    
     
     //  MARK: - Initializers
     
     init(question: Question, questionNumber: Int) {
         self.question = question
+        
+        self.questionNumber = questionNumber
         self.questionNumberLabel.text = "Вопрос " + String(questionNumber + 1)
         questionCostLabel.text = String(question.price) + " RUB"
         
@@ -59,6 +70,37 @@ class GameMainVC: UIViewController, Coordinating {
         tableView.delegate = self
         
         setupUI()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Забрать деньги", style: .plain, target: self, action: #selector(loseButtonTapped))
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if isMovingFromParent {
+            coordinator?.backButtonTapped()
+        }
+    }
+    
+    // SoundPlayer methods implementation
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        SoundClass.playSound(resource: .questionTimer)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        SoundClass.stopSound()
+    }
+    
+    
+    // MARK: - Lose Button method
+    
+    @objc func loseButtonTapped() {
+        coordinator!.goToWinnerScreen(questionsAnswered: questionNumber, moneyWon: coordinator!.moneyEarned)
     }
     
 }
@@ -72,6 +114,7 @@ extension GameMainVC: UITableViewDelegate, UITableViewDataSource {
         
         tableView.register(QuestionAnswerTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.backgroundColor = UIColor.clear
+        tableView.alwaysBounceVertical = false
         
         
         NSLayoutConstraint.activate([
@@ -82,27 +125,31 @@ extension GameMainVC: UITableViewDelegate, UITableViewDataSource {
         ])
     }
     
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return question.answers.count
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         1
     }
-    
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         cellSpacing
     }
-    
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
         view.backgroundColor = .clear
-        
+
         return view
     }
     
+  
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
+    
+
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -110,9 +157,7 @@ extension GameMainVC: UITableViewDelegate, UITableViewDataSource {
             withIdentifier: "cell",
             for: indexPath) as? QuestionAnswerTableViewCell {
             
-            let radius = cell.contentView.layer.cornerRadius
-            cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: radius).cgPath
-            
+
             cell.set(
                 answer: question.answers[indexPath.section],
                 index: indexPath.section)
@@ -122,15 +167,17 @@ extension GameMainVC: UITableViewDelegate, UITableViewDataSource {
         return UITableViewCell()
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.contentView.layer.masksToBounds = false
-    }
+  
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         coordinator?.selectedAnswer(isRight: question.answers[indexPath.section].isRight)
+        tableView.reloadData()
+        updateUI()
+        
     }
     
 }
+
 
 //MARK: - UI Setup w/o TableView
 extension GameMainVC {
@@ -143,6 +190,19 @@ extension GameMainVC {
         setBottomStackView()
         configureTableView()
         
+    }
+    
+    func updateUI() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [self] in
+            question = (coordinator?.updateQuestion())!.question
+            questionNumber = (coordinator?.updateQuestion())!.questionNumber
+            
+            questionNumberLabel.text = "Вопрос " + String(questionNumber)
+            questionCostLabel.text = String(question.price) + " RUB"
+            questionTextLabel.text = question.text
+            tableView.reloadData()
+            tableView.isUserInteractionEnabled = true
+        }
     }
     
     func configureBackgroundImageView(){
@@ -171,8 +231,10 @@ extension GameMainVC {
         questionTextLabel.font = .systemFont(ofSize: 20, weight: .bold)
         questionTextLabel.textColor = .black
         questionTextLabel.textAlignment = .left
-        questionTextLabel.lineBreakMode = .byWordWrapping
-        questionTextLabel.numberOfLines = 0
+        questionTextLabel.lineBreakMode = .byTruncatingTail
+        questionTextLabel.numberOfLines = 4
+        questionTextLabel.minimumScaleFactor = 0.2
+        questionTextLabel.adjustsFontSizeToFitWidth = true
         
     }
     
@@ -239,6 +301,10 @@ extension GameMainVC {
     func configureEliminateTwoQuestionsButton() {
         eliminateTwoQuestionsButton.setImage(ImageList.fifty, for: .normal)
         eliminateTwoQuestionsButton.translatesAutoresizingMaskIntoConstraints = false
+        eliminateTwoQuestionsButton.addTarget(
+            self,
+            action: #selector(fiftyFiftyButtonTapped(sender:)),
+            for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             eliminateTwoQuestionsButton.heightAnchor.constraint(equalToConstant: buttonSize.height),
@@ -249,6 +315,10 @@ extension GameMainVC {
     func configureAudienceHelpButton() {
         audienceHelpButton.setImage(ImageList.askTheAudience, for: .normal)
         audienceHelpButton.translatesAutoresizingMaskIntoConstraints = false
+        audienceHelpButton.addTarget(
+            self,
+            action: #selector(audienceHelpTapped(sender:)),
+            for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             audienceHelpButton.heightAnchor.constraint(equalToConstant: buttonSize.height),
@@ -260,6 +330,10 @@ extension GameMainVC {
     func configureCallAFriendButton() {
         callAFriendButton.setImage(ImageList.phoneCall, for: .normal)
         callAFriendButton.translatesAutoresizingMaskIntoConstraints = false
+        callAFriendButton.addTarget(
+            self,
+            action: #selector(callAFriendTapped(sender:)),
+            for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             callAFriendButton.heightAnchor.constraint(equalToConstant: buttonSize.height),
@@ -294,23 +368,75 @@ extension GameMainVC {
     
 }
 
-// MARK: - PreviewProvider
-//struct FlowProvider: PreviewProvider {
-//    static var previews: some View {
-//        ContainterView().edgesIgnoringSafeArea(.all)
-//    }
-//
-//    struct ContainterView: UIViewControllerRepresentable {
-//
-//        let view = GameMainVC()
-//        func makeUIViewController(context: UIViewControllerRepresentableContext<FlowProvider.ContainterView>) -> GameMainVC {
-//            return view
-//        }
-//
-//        func updateUIViewController(_ uiViewController: FlowProvider.ContainterView.UIViewControllerType, context: UIViewControllerRepresentableContext<FlowProvider.ContainterView>) {
-//
-//        }
-//
-//    }
-//
-//}
+//  MARK: - Help buttons actions
+
+extension GameMainVC {
+    @objc func audienceHelpTapped(sender: UIButton) {
+        sender.setImage(ImageList.askTheAudienceUsed, for: .normal)
+        
+        let alert = HelpAlertController(
+            answers: question.answers,
+            helpType: .audienceHelp,
+            isUsed: isAudienceHelpUsed)
+        isAudienceHelpUsed = true
+        present(alert, animated: true)
+    }
+    
+    @objc func callAFriendTapped(sender: UIButton) {
+        sender.setImage(ImageList.phoneCallUsed, for: .normal)
+        
+        let alert = HelpAlertController(
+            answers: question.answers,
+            helpType: .callAFriend,
+            isUsed: isCallAFriendUsed)
+        isCallAFriendUsed = true
+        present(alert, animated: true)
+        
+    }
+    
+    @objc func fiftyFiftyButtonTapped(sender: UIButton) {
+        sender.setImage(ImageList.fiftyUsed, for: .normal)
+        if !isFiftyFiftyUsed {
+            HelpAlertController().wrongAndRight(from: question.answers) { rightAnswer, wrongAnswer in
+                let halfOfAnswers = [rightAnswer, wrongAnswer].shuffled()
+                self.question.answers = halfOfAnswers
+                self.tableView.reloadData()
+            }
+            isFiftyFiftyUsed = true
+        } else {
+            let alert = UIAlertController(
+                title: "Вы уже использовали эту подсказку",
+                message: nil,
+                preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ок", style: .cancel))
+            present(alert, animated: true)
+        }
+    }
+}
+
+ //MARK: - PreviewProvider
+
+struct FlowProvider: PreviewProvider {
+    static var previews: some View {
+        ContainterView().edgesIgnoringSafeArea(.all)
+    }
+
+    struct ContainterView: UIViewControllerRepresentable {
+
+        let view = GameMainVC(question: Question(text: "Question for the sake of this demo. Moreover, I would like to test text truncation. I am typing more word to make this question even longer", price: 100, answers: [
+            Answer(text: "First answer", isRight: false),
+            Answer(text: "Second answer", isRight: false),
+            Answer(text: "Third time the charm", isRight: true),
+            Answer(text: "Just random fourth answer", isRight: false)
+        ]), questionNumber: 1)
+        func makeUIViewController(context: UIViewControllerRepresentableContext<FlowProvider.ContainterView>) -> GameMainVC {
+            return view
+        }
+
+        func updateUIViewController(_ uiViewController: FlowProvider.ContainterView.UIViewControllerType, context: UIViewControllerRepresentableContext<FlowProvider.ContainterView>) {
+
+        }
+
+    }
+
+}
