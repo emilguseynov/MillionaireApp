@@ -9,38 +9,24 @@ import UIKit
 
 class QuestionAnswerTableViewCell: UITableViewCell {
 
-    let backgroundImageView = UIImageView()
+    let backgroundImageView = UIImageView(image: UIImage(named: "buttonWithShadow"))
     
     let questionIDLabel     = UILabel()
     let questionAnswerLabel = UILabel()
     
     let questionStack       = UIStackView()
     
-    let inset: CGFloat = 10
+    let inset: CGFloat = 22
     
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        backgroundImageView.addSubview(questionIDLabel)
-        backgroundImageView.addSubview(questionAnswerLabel)
+               
         setupUI()
-        
-        
-        backgroundColor = .clear
-        layer.borderColor = UIColor.black.cgColor
-        layer.masksToBounds = false
-        
-        layer.shadowColor = UIColor.gray.cgColor
-        layer.shadowOpacity = 1
-        layer.cornerRadius = 5
-        layer.shadowOffset = CGSize(width: 10, height: 30)
-
-        
-        contentView.backgroundColor = .white
-            contentView.layer.cornerRadius = 10
     }
     
+    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -64,35 +50,42 @@ class QuestionAnswerTableViewCell: UITableViewCell {
 
     func setupUI() {
         
-        questionIDLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(questionIDLabel)
+        addSubview(questionAnswerLabel)
         
+        self.backgroundView = backgroundImageView
+        backgroundColor = .clear
+              
+                   
+        questionIDLabel.translatesAutoresizingMaskIntoConstraints = false
         questionIDLabel.font = .systemFont(ofSize: 20, weight: .bold)
         questionIDLabel.textColor = .white
         
-        
         questionAnswerLabel.translatesAutoresizingMaskIntoConstraints = false
-
         questionAnswerLabel.font = .systemFont(ofSize: 20, weight: .bold)
         questionAnswerLabel.textColor = .white
         
-        
-        backgroundImageView.image = UIImage(named: "buttonWithShadow")
-        backgroundImageView.contentMode = .scaleToFill
-        contentView.addSubview(backgroundImageView)
-        backgroundImageView.frame = bounds
-        
+
+        backgroundImageView.contentMode = .scaleAspectFill
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            questionIDLabel.topAnchor.constraint(equalTo: topAnchor),
-            questionIDLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
-            questionIDLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: inset),
+            questionIDLabel.topAnchor.constraint(equalTo: backgroundImageView.topAnchor),
+            questionIDLabel.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -10),
+            questionIDLabel.leadingAnchor.constraint(equalTo: backgroundImageView.leadingAnchor, constant: inset-10),
             questionIDLabel.heightAnchor.constraint(equalToConstant: 20),
             questionIDLabel.widthAnchor.constraint(equalToConstant: 20),
             
-            questionAnswerLabel.topAnchor.constraint(equalTo: topAnchor),
-            questionAnswerLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
-            questionAnswerLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -inset),
+            questionAnswerLabel.topAnchor.constraint(equalTo: backgroundImageView.topAnchor),
+            questionAnswerLabel.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -10),
+            questionAnswerLabel.trailingAnchor.constraint(equalTo: backgroundImageView.trailingAnchor, constant: -inset),
             questionAnswerLabel.heightAnchor.constraint(equalToConstant: 20),
+            
+            
+            backgroundImageView.topAnchor.constraint(equalTo: topAnchor),
+            backgroundImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            backgroundImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            backgroundImageView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 }

@@ -14,6 +14,7 @@ class GameCoordinator {
     var dataFetch: DataFetch?
     var questionArr: [Question]?
     var questionNumber = 0
+    var moneyEarned = 0
     
     func start() {
         let viewControoler = MainViewController()
@@ -49,6 +50,9 @@ class GameCoordinator {
                 let questionListVC = QuestionsListViewController()
                 self.navigationController?.pushViewController(questionListVC, animated: true)
                 self.questionNumber += 1
+                
+                self.moneyEarned += qlist[qlist.count-self.questionNumber].amount
+                
                 // need setup questionListVC to highlight just answered question with green color
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
@@ -68,6 +72,11 @@ class GameCoordinator {
     
     func backButtonTapped() {
         questionNumber = 0
+    }
+    
+    func goToWinnerScreen(questionsAnswered: Int, moneyWon: Int) {
+        
+        // to be implemented
     }
     
     //  MARK: - Private methods
@@ -97,6 +106,7 @@ class GameCoordinator {
         }
         if questionNumber >= 15 {
             //  create and present winner screen
+            goToWinnerScreen(questionsAnswered: 15, moneyWon: moneyEarned)
             start()
         }
         
@@ -115,8 +125,12 @@ class GameCoordinator {
         
         self.navigationController?.viewControllers = navigationArray
     }
+ 
+    
+ 
     
 }
+
 
 protocol Coordinating {
     var coordinator: GameCoordinator? { get set }

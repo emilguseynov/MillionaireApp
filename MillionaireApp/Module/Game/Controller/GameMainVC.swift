@@ -70,6 +70,8 @@ class GameMainVC: UIViewController, Coordinating {
         
         setupUI()
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Забрать деньги", style: .plain, target: self, action: #selector(loseButtonTapped))
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -93,6 +95,13 @@ class GameMainVC: UIViewController, Coordinating {
         SoundClass.stopSound()
     }
     
+    
+    // MARK: - Lose Button method
+    
+    @objc func loseButtonTapped() {
+        coordinator!.goToWinnerScreen(questionsAnswered: questionNumber, moneyWon: coordinator!.moneyEarned)
+    }
+    
 }
 // MARK: - TableView Setup
 extension GameMainVC: UITableViewDelegate, UITableViewDataSource {
@@ -104,6 +113,7 @@ extension GameMainVC: UITableViewDelegate, UITableViewDataSource {
         
         tableView.register(QuestionAnswerTableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.backgroundColor = UIColor.clear
+        tableView.alwaysBounceVertical = false
         
         
         NSLayoutConstraint.activate([
@@ -114,27 +124,31 @@ extension GameMainVC: UITableViewDelegate, UITableViewDataSource {
         ])
     }
     
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return question.answers.count
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         1
     }
-    
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         cellSpacing
     }
-    
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
         view.backgroundColor = .clear
-        
+
         return view
     }
     
+  
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
+    
+
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -142,9 +156,7 @@ extension GameMainVC: UITableViewDelegate, UITableViewDataSource {
             withIdentifier: "cell",
             for: indexPath) as? QuestionAnswerTableViewCell {
             
-            let radius = cell.contentView.layer.cornerRadius
-            cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: radius).cgPath
-            
+
             cell.set(
                 answer: question.answers[indexPath.section],
                 index: indexPath.section)
@@ -154,9 +166,7 @@ extension GameMainVC: UITableViewDelegate, UITableViewDataSource {
         return UITableViewCell()
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.contentView.layer.masksToBounds = false
-    }
+  
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         coordinator?.selectedAnswer(isRight: question.answers[indexPath.section].isRight)
@@ -220,9 +230,9 @@ extension GameMainVC {
         questionTextLabel.font = .systemFont(ofSize: 20, weight: .bold)
         questionTextLabel.textColor = .black
         questionTextLabel.textAlignment = .left
-        questionTextLabel.lineBreakMode = .byWordWrapping
-        questionTextLabel.numberOfLines = 0
-        //questionTextLabel.minimumFontSize = 8;
+        questionTextLabel.lineBreakMode = .byTruncatingTail
+        questionTextLabel.numberOfLines = 4
+        questionTextLabel.minimumScaleFactor = 0.2
         questionTextLabel.adjustsFontSizeToFitWidth = true
         
     }
@@ -380,23 +390,29 @@ extension GameMainVC {
     }
 }
 
-// MARK: - PreviewProvider
-//struct FlowProvider: PreviewProvider {
-//    static var previews: some View {
-//        ContainterView().edgesIgnoringSafeArea(.all)
-//    }
-//
-//    struct ContainterView: UIViewControllerRepresentable {
-//
-//        let view = GameMainVC()
-//        func makeUIViewController(context: UIViewControllerRepresentableContext<FlowProvider.ContainterView>) -> GameMainVC {
-//            return view
-//        }
-//
-//        func updateUIViewController(_ uiViewController: FlowProvider.ContainterView.UIViewControllerType, context: UIViewControllerRepresentableContext<FlowProvider.ContainterView>) {
-//
-//        }
-//
-//    }
-//
-//}
+ //MARK: - PreviewProvider
+
+struct FlowProvider: PreviewProvider {
+    static var previews: some View {
+        ContainterView().edgesIgnoringSafeArea(.all)
+    }
+
+    struct ContainterView: UIViewControllerRepresentable {
+
+        let view = GameMainVC(question: Question(text: "Question for the sake of this demo. Moreover, I would like to test text truncation. I am typing more word to make this question even longer", price: 100, answers: [
+            Answer(text: "First answer", isRight: false),
+            Answer(text: "Second answer", isRight: false),
+            Answer(text: "Third time the charm", isRight: true),
+            Answer(text: "Just random fourth answer", isRight: false)
+        ]), questionNumber: 1)
+        func makeUIViewController(context: UIViewControllerRepresentableContext<FlowProvider.ContainterView>) -> GameMainVC {
+            return view
+        }
+
+        func updateUIViewController(_ uiViewController: FlowProvider.ContainterView.UIViewControllerType, context: UIViewControllerRepresentableContext<FlowProvider.ContainterView>) {
+
+        }
+
+    }
+
+}
