@@ -16,6 +16,8 @@ class QuestionAnswerTableViewCell: UITableViewCell {
     
     let questionStack       = UIStackView()
     
+    let inset: CGFloat = 10
+    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -27,9 +29,6 @@ class QuestionAnswerTableViewCell: UITableViewCell {
         
         backgroundColor = .clear
         layer.borderColor = UIColor.black.cgColor
-        //layer.borderWidth = 1
-        //layer.cornerRadius = 9
-        //clipsToBounds = true
         layer.masksToBounds = false
         
         layer.shadowColor = UIColor.gray.cgColor
@@ -86,15 +85,14 @@ class QuestionAnswerTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             questionIDLabel.topAnchor.constraint(equalTo: topAnchor),
             questionIDLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
-            questionIDLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            questionIDLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: inset),
             questionIDLabel.heightAnchor.constraint(equalToConstant: 20),
             questionIDLabel.widthAnchor.constraint(equalToConstant: 20),
             
             questionAnswerLabel.topAnchor.constraint(equalTo: topAnchor),
             questionAnswerLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
-            questionAnswerLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            questionAnswerLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -inset),
             questionAnswerLabel.heightAnchor.constraint(equalToConstant: 20),
-            questionAnswerLabel.widthAnchor.constraint(equalToConstant: 80),
         ])
     }
 }
