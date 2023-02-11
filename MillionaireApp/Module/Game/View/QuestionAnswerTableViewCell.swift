@@ -68,6 +68,7 @@ class QuestionAnswerTableViewCell: UITableViewCell {
 
         backgroundImageView.contentMode = .scaleAspectFill
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundImageView.frame = frame
         
         NSLayoutConstraint.activate([
             questionIDLabel.topAnchor.constraint(equalTo: backgroundImageView.topAnchor),
@@ -82,10 +83,10 @@ class QuestionAnswerTableViewCell: UITableViewCell {
             questionAnswerLabel.heightAnchor.constraint(equalToConstant: 20),
             
             
-            backgroundImageView.topAnchor.constraint(equalTo: topAnchor),
+            //backgroundImageView.topAnchor.constraint(equalTo: topAnchor),
             backgroundImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             backgroundImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            backgroundImageView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            //backgroundImageView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 }

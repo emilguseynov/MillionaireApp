@@ -66,6 +66,8 @@ class QuestionsListViewController: UIViewController {
         
         setupView()
         setupConstraints()
+        
+        navigationItem.hidesBackButton = true
     }
 }
 
@@ -166,3 +168,4 @@ extension QuestionsListViewController {
         SoundClass.stopSound()
     }
 }
+
