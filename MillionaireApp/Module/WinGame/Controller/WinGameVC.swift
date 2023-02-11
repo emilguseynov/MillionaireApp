@@ -6,14 +6,14 @@
 //
 
 import UIKit
+import AVFoundation
 
 //MARK: - Properties
-
 class WinGameVC: UIViewController, Coordinating {
     var coordinator: GameCoordinator?
-    
     var dataFetch: DataFetch?
     var questionArray: Questions?
+    private var player: AVAudioPlayer!
     
     private var smallResultLabel: UILabel = {
         let label = UILabel()
@@ -35,14 +35,14 @@ class WinGameVC: UIViewController, Coordinating {
         return label
     }()
     
-    private lazy var playAgainButton: UIButton = {
+    private lazy var goToTheMainVCButton: UIButton = {
        let button = UIButton()
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = ColorList.accentGreen
         button.layer.cornerRadius = 20
         button.setTitle("Play again", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 36)
-        button.addTarget(self, action: #selector(playAgainGamePressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(goToTheMainVCPressed), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -55,6 +55,11 @@ class WinGameVC: UIViewController, Coordinating {
     
     
 //  MARK: - LifeCycle
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        player.play()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -70,9 +75,16 @@ extension WinGameVC {
             self.view.insertSubview(backgroundImage, at: 0)
         
         view.addSubview(logoGameImage)
-        view.addSubview(playAgainButton)
+        view.addSubview(goToTheMainVCButton)
         view.addSubview(bigResultLabel)
         view.addSubview(smallResultLabel)
+        
+        do {
+            player = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "WinVCSound", ofType:"mp3")!))
+            player.prepareToPlay()
+                } catch {
+                    print(error)
+                }
     }
 }
 
@@ -98,10 +110,10 @@ extension WinGameVC {
         ])
         
         NSLayoutConstraint.activate([
-            playAgainButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            playAgainButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -84),
-            playAgainButton.heightAnchor.constraint(equalToConstant: 100),
-            playAgainButton.widthAnchor.constraint(equalToConstant: 300)
+            goToTheMainVCButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            goToTheMainVCButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -84),
+            goToTheMainVCButton.heightAnchor.constraint(equalToConstant: 100),
+            goToTheMainVCButton.widthAnchor.constraint(equalToConstant: 300)
         ])
     }
 }
@@ -109,9 +121,15 @@ extension WinGameVC {
 //MARK: - buttons actions (navigation for another controllers)
 extension WinGameVC {
     
-    @objc func playAgainGamePressed (_ sender: UIButton) {
-        coordinator?.showRules()
-        print("1")
+    @objc func goToTheMainVCPressed (_ sender: UIButton) {
+        coordinator?.goToTheMainVC()
     }
+}
+
+//MARK: - sound func (navigation for another controllers)
+extension WinGameVC {
+    func playSound(_ sender: Any) {
+        player.play()
+        }
 }
 

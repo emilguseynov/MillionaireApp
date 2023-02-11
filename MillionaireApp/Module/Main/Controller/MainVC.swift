@@ -8,7 +8,6 @@
 import UIKit
 
 //MARK: - Properties
-
 class MainViewController: UIViewController, Coordinating {
     
     private var welcomeLabel: UILabel = {

@@ -14,6 +14,7 @@
 		C5D483372995106800ACC682 /* LoseGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D483362995106800ACC682 /* LoseGameVC.swift */; };
 		C5D483392995138000ACC682 /* ColorList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D483382995138000ACC682 /* ColorList.swift */; };
 		C5D4833F2996EDC000ACC682 /* WinGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D4833E2996EDC000ACC682 /* WinGameVC.swift */; };
+		C5D4834229981DB100ACC682 /* WinVCSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C5D4834129981DB100ACC682 /* WinVCSound.mp3 */; };
 		C797B0E72993BF49000C6959 /* GameCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C797B0E62993BF49000C6959 /* GameCoordinator.swift */; };
 		C7BC09A5298F8FAC00787737 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BC09A4298F8FAC00787737 /* AppDelegate.swift */; };
 		C7BC09A7298F8FAC00787737 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BC09A6298F8FAC00787737 /* SceneDelegate.swift */; };
@@ -38,6 +39,7 @@
 		C5D483362995106800ACC682 /* LoseGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoseGameVC.swift; sourceTree = "<group>"; };
 		C5D483382995138000ACC682 /* ColorList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorList.swift; sourceTree = "<group>"; };
 		C5D4833E2996EDC000ACC682 /* WinGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinGameVC.swift; sourceTree = "<group>"; };
+		C5D4834129981DB100ACC682 /* WinVCSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WinVCSound.mp3; sourceTree = "<group>"; };
 		C797B0E62993BF49000C6959 /* GameCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCoordinator.swift; sourceTree = "<group>"; };
 		C7BC09A1298F8FAC00787737 /* MillionaireApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MillionaireApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7BC09A4298F8FAC00787737 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -78,25 +80,9 @@
 		C5D483322995101600ACC682 /* LoseGame */ = {
 			isa = PBXGroup;
 			children = (
-				C5D483332995103200ACC682 /* Model */,
-				C5D483342995103900ACC682 /* View */,
 				C5D483352995103F00ACC682 /* Controller */,
 			);
 			path = LoseGame;
-			sourceTree = "<group>";
-		};
-		C5D483332995103200ACC682 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		C5D483342995103900ACC682 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		C5D483352995103F00ACC682 /* Controller */ = {
@@ -110,8 +96,6 @@
 		C5D4833A2996ED6E00ACC682 /* WinGame */ = {
 			isa = PBXGroup;
 			children = (
-				C5D4833D2996ED9D00ACC682 /* Model */,
-				C5D4833C2996ED9200ACC682 /* View */,
 				C5D4833B2996ED8200ACC682 /* Controller */,
 			);
 			path = WinGame;
@@ -125,18 +109,12 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		C5D4833C2996ED9200ACC682 /* View */ = {
+		C5D4834029981D9800ACC682 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				C5D4834129981DB100ACC682 /* WinVCSound.mp3 */,
 			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		C5D4833D2996ED9D00ACC682 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 		C7BC0998298F8FAC00787737 = {
@@ -163,6 +141,7 @@
 				C7BC09B9298F919500787737 /* Helpers */,
 				C7BC09B8298F918900787737 /* Module */,
 				C7BC09C6298F979700787737 /* Delegates */,
+				C5D4834029981D9800ACC682 /* Sounds */,
 				C7BC09AD298F8FAE00787737 /* Assets.xcassets */,
 				C7BC09AF298F8FAE00787737 /* LaunchScreen.storyboard */,
 				C7BC09B2298F8FAE00787737 /* Info.plist */,
@@ -386,6 +365,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5D4834229981DB100ACC682 /* WinVCSound.mp3 in Resources */,
 				C7BC09CE29911FF500787737 /* questions.json in Resources */,
 				C7BC09B1298F8FAE00787737 /* LaunchScreen.storyboard in Resources */,
 				C7BC09AE298F8FAE00787737 /* Assets.xcassets in Resources */,

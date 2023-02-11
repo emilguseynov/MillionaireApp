@@ -30,11 +30,10 @@ class GameCoordinator {
     
     func showRules() {
         navigationController?.pushViewController(RulesViewController(), animated: true)
-        print("2")
     }
     
-    func playAgain() {
-        print("3")
+    func goToTheMainVC() {
+        start()
     }
 
     
@@ -49,9 +48,8 @@ class GameCoordinator {
                 self.presentGameVCWithQuestion(questionNumber: self.questionNumber)
             }
         } else {
-            // create and present loser screen
-//           startGame()
             let loseGameVC = LoseGameVC()
+            loseGameVC.coordinator = self
             navigationController?.pushViewController(loseGameVC, animated: true)
         }
     }
@@ -61,6 +59,7 @@ class GameCoordinator {
         if questionNumber >= 15 {
             
             let winGameVC = WinGameVC()
+            winGameVC.coordinator = self
             navigationController?.pushViewController(winGameVC, animated: true)
             
             return
