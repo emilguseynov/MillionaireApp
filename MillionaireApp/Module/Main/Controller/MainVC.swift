@@ -33,7 +33,7 @@ class MainViewController: UIViewController, Coordinating {
     
     private lazy var startGameButton: UIButton = {
        let button = UIButton()
-        button.setTitleColor(#colorLiteral(red: 0.3739845157, green: 0.8933092952, blue: 0.7061889768, alpha: 1), for: .normal)
+        button.setTitleColor(ColorList.accentGreen, for: .normal)
         button.setTitle("Start Game", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 32)
         button.addTarget(self, action: #selector(startGamePressed), for: .touchUpInside)
@@ -43,7 +43,7 @@ class MainViewController: UIViewController, Coordinating {
     
     private lazy var gamesRules: UIButton = {
        let button = UIButton()
-        button.setTitleColor(#colorLiteral(red: 0.3739845157, green: 0.8933092952, blue: 0.7061889768, alpha: 1), for: .normal)
+        button.setTitleColor(ColorList.accentGreen, for: .normal)
         button.setTitle("Правила игры", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 32)
         button.addTarget(self, action: #selector(gamesRulesPressed), for: .touchUpInside)
@@ -62,8 +62,7 @@ class MainViewController: UIViewController, Coordinating {
     var dataFetch: DataFetch?
     var questionArray: Questions?
     
-    //  MARK: - LifeCycle
-        
+//  MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()

@@ -30,7 +30,13 @@ class GameCoordinator {
     
     func showRules() {
         navigationController?.pushViewController(RulesViewController(), animated: true)
+        print("2")
     }
+    
+    func playAgain() {
+        print("3")
+    }
+
     
     func selectedAnswer(isRight: Bool) {
         if isRight {
@@ -44,7 +50,9 @@ class GameCoordinator {
             }
         } else {
             // create and present loser screen
-           startGame()
+//           startGame()
+            let loseGameVC = LoseGameVC()
+            navigationController?.pushViewController(loseGameVC, animated: true)
         }
     }
     
@@ -52,9 +60,9 @@ class GameCoordinator {
         
         if questionNumber >= 15 {
             
-            //  create and present winner screen
+            let winGameVC = WinGameVC()
+            navigationController?.pushViewController(winGameVC, animated: true)
             
-            start()
             return
         }
         if let question = questionArr?[questionNumber] {
