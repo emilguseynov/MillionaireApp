@@ -36,11 +36,6 @@ class GameCoordinator {
         navigationController?.pushViewController(RulesViewController(), animated: true)
     }
     
-    func goToTheMainVC() {
-        start()
-    }
-
-    
     func selectedAnswer(isRight: Bool) {
         
         SoundClass.playSound(resource: .intrigue)
@@ -70,12 +65,6 @@ class GameCoordinator {
                 SoundClass.playSound(resource: .answerIsWrong)
                 self.start()
             }
-
-        } else {
-            let loseGameVC = LoseGameVC()
-            loseGameVC.coordinator = self
-            navigationController?.pushViewController(loseGameVC, animated: true)
-
         }
         
         
@@ -94,16 +83,6 @@ class GameCoordinator {
     
     private func presentGameVCWithQuestion(questionNumber: Int) {
         
-
-        if questionNumber >= 15 {
-            
-            let winGameVC = WinGameVC()
-            winGameVC.coordinator = self
-            navigationController?.pushViewController(winGameVC, animated: true)
-            
-            return
-        }
-
         if let question = questionArr?[questionNumber] {
             var mixedAnswersQuestion = question
             mixedAnswersQuestion.answers = question.answers.shuffled()
