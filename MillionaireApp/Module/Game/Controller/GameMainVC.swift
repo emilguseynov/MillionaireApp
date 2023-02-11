@@ -386,13 +386,21 @@ extension GameMainVC {
     
     @objc func fiftyFiftyButtonTapped(sender: UIButton) {
         sender.setImage(ImageList.fiftyUsed, for: .normal)
-//        let currentQuestionIndex = coordinator?.questionArr?.index(before: coordinator!.questionNumber)
-        let alert = HelpAlertController(
-            answers: question.answers,
-            helpType: .fiftyFifty,
-            isUsed: isFiftyFiftyUsed)
-        isFiftyFiftyUsed = true
-        present(alert, animated: true)
+        if !isFiftyFiftyUsed {
+            HelpAlertController().wrongAndRight(from: question.answers) { rightAnswer, wrongAnswer in
+                let halfOfAnswers = [rightAnswer, wrongAnswer].shuffled()
+                self.question.answers = halfOfAnswers
+                self.tableView.reloadData()
+            }
+            isFiftyFiftyUsed = true
+        } else {
+            let alert = UIAlertController(
+                title: "Вы уже использовали эту подсказку",
+                message: nil,
+                preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ок", style: .cancel))
+            present(alert, animated: true)
+        }
     }
 }
 
