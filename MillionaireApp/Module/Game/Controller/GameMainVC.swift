@@ -42,6 +42,7 @@ class GameMainVC: UIViewController, Coordinating {
     //  help buttons use status
     var isAudienceHelpUsed = false
     var isCallAFriendUsed = false
+    var isFiftyFiftyUsed = false
     
     
     //  MARK: - Initializers
@@ -300,6 +301,10 @@ extension GameMainVC {
     func configureEliminateTwoQuestionsButton() {
         eliminateTwoQuestionsButton.setImage(ImageList.fifty, for: .normal)
         eliminateTwoQuestionsButton.translatesAutoresizingMaskIntoConstraints = false
+        eliminateTwoQuestionsButton.addTarget(
+            self,
+            action: #selector(fiftyFiftyButtonTapped(sender:)),
+            for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             eliminateTwoQuestionsButton.heightAnchor.constraint(equalToConstant: buttonSize.height),
@@ -387,6 +392,25 @@ extension GameMainVC {
         isCallAFriendUsed = true
         present(alert, animated: true)
         
+    }
+    
+    @objc func fiftyFiftyButtonTapped(sender: UIButton) {
+        sender.setImage(ImageList.fiftyUsed, for: .normal)
+        if !isFiftyFiftyUsed {
+            HelpAlertController().wrongAndRight(from: question.answers) { rightAnswer, wrongAnswer in
+                let halfOfAnswers = [rightAnswer, wrongAnswer].shuffled()
+                self.question.answers = halfOfAnswers
+                self.tableView.reloadData()
+            }
+            isFiftyFiftyUsed = true
+        } else {
+            let alert = UIAlertController(
+                title: "Вы уже использовали эту подсказку",
+                message: nil,
+                preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ок", style: .cancel))
+            present(alert, animated: true)
+        }
     }
 }
 
