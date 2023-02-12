@@ -17,6 +17,7 @@
 		6FF331582995476B00DCAFB7 /* zvuk-nepravilnogo-otveta-vkto-hochet-stat-millionerom-5270_6.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6FF331572995476B00DCAFB7 /* zvuk-nepravilnogo-otveta-vkto-hochet-stat-millionerom-5270_6.mp3 */; };
 		6FF3315A299547AA00DCAFB7 /* otvet-prinyat-teper-govorit-veduschiy-5266-1_7.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6FF33159299547AA00DCAFB7 /* otvet-prinyat-teper-govorit-veduschiy-5266-1_7.mp3 */; };
 		6FF3315C299548F600DCAFB7 /* bolee-kachestvennyiy-zvuk-mojet-on-vam-nujen-5284_8.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6FF3315B299548F600DCAFB7 /* bolee-kachestvennyiy-zvuk-mojet-on-vam-nujen-5284_8.mp3 */; };
+		C717FD9229984BBC00F60BF4 /* WinLoseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C717FD9129984BBC00F60BF4 /* WinLoseVC.swift */; };
 		C797B0E72993BF49000C6959 /* GameCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C797B0E62993BF49000C6959 /* GameCoordinator.swift */; };
 		C7A1F0DE2995501B003E7C0A /* HelpAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A1F0DD2995501B003E7C0A /* HelpAlertController.swift */; };
 		C7BC09A5298F8FAC00787737 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BC09A4298F8FAC00787737 /* AppDelegate.swift */; };
@@ -45,6 +46,7 @@
 		6FF331572995476B00DCAFB7 /* zvuk-nepravilnogo-otveta-vkto-hochet-stat-millionerom-5270_6.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "zvuk-nepravilnogo-otveta-vkto-hochet-stat-millionerom-5270_6.mp3"; sourceTree = "<group>"; };
 		6FF33159299547AA00DCAFB7 /* otvet-prinyat-teper-govorit-veduschiy-5266-1_7.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "otvet-prinyat-teper-govorit-veduschiy-5266-1_7.mp3"; sourceTree = "<group>"; };
 		6FF3315B299548F600DCAFB7 /* bolee-kachestvennyiy-zvuk-mojet-on-vam-nujen-5284_8.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "bolee-kachestvennyiy-zvuk-mojet-on-vam-nujen-5284_8.mp3"; sourceTree = "<group>"; };
+		C717FD9129984BBC00F60BF4 /* WinLoseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinLoseVC.swift; sourceTree = "<group>"; };
 		C797B0E62993BF49000C6959 /* GameCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCoordinator.swift; sourceTree = "<group>"; };
 		C7A1F0DD2995501B003E7C0A /* HelpAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpAlertController.swift; sourceTree = "<group>"; };
 		C7BC09A1298F8FAC00787737 /* MillionaireApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MillionaireApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +97,14 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
+		C717FD8E29984B8100F60BF4 /* WinLose */ = {
+			isa = PBXGroup;
+			children = (
+				C717FD9129984BBC00F60BF4 /* WinLoseVC.swift */,
+			);
+			path = WinLose;
+			sourceTree = "<group>";
+		};
 		C7BC0998298F8FAC00787737 = {
 			isa = PBXGroup;
 			children = (
@@ -114,7 +124,6 @@
 		C7BC09A3298F8FAC00787737 /* MillionaireApp */ = {
 			isa = PBXGroup;
 			children = (
-				C797B0E62993BF49000C6959 /* GameCoordinator.swift */,
 				C7BC09D029912F5000787737 /* Service */,
 				C7BC09B9298F919500787737 /* Helpers */,
 				C7BC09B8298F918900787737 /* Module */,
@@ -130,6 +139,8 @@
 		C7BC09B8298F918900787737 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				C797B0E62993BF49000C6959 /* GameCoordinator.swift */,
+				C717FD8E29984B8100F60BF4 /* WinLose */,
 				C7BC09BA298F925D00787737 /* Main */,
 				C7BC09BC298F929000787737 /* Game */,
 				C7BC09BD298F92F000787737 /* QuestionList */,
@@ -364,6 +375,7 @@
 				CEC65F372992637A004530DD /* Images.swift in Sources */,
 				C797B0E72993BF49000C6959 /* GameCoordinator.swift in Sources */,
 				CEC65F322992634C004530DD /* QuestionTableViewCell.swift in Sources */,
+				C717FD9229984BBC00F60BF4 /* WinLoseVC.swift in Sources */,
 				CEC65F3529926367004530DD /* QuestionModel.swift in Sources */,
 				607CFD162991A30E00930BEB /* RulesViewController.swift in Sources */,
 				C7BC09C8298F98B800787737 /* MainViewController.swift in Sources */,
