@@ -66,6 +66,8 @@ class GameMainVC: UIViewController, Coordinating {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.hidesBackButton = true
+        
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -159,7 +161,7 @@ extension GameMainVC: UITableViewDelegate, UITableViewDataSource {
             withIdentifier: "cell",
             for: indexPath) as? QuestionAnswerTableViewCell {
             
-
+            cell.selectionStyle = .none
             cell.set(
                 answer: question.answers[indexPath.section],
                 index: indexPath.section)
