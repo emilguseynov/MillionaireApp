@@ -15,7 +15,7 @@ class GameMainVC: UIViewController, Coordinating {
     let backgroundImage               = UIImageView()
     
     var questionTextLabel             = UILabel()
-    let logoImageView                 = UIImageView()
+    let timerLabel                    = UILabel()
     let topStackView                  = UIStackView()
     
     var questionNumberLabel           = UILabel()
@@ -43,6 +43,8 @@ class GameMainVC: UIViewController, Coordinating {
     var isAudienceHelpUsed = false
     var isCallAFriendUsed = false
     var isFiftyFiftyUsed = false
+    
+    var timerValue = 0
     
     
     //  MARK: - Initializers
@@ -217,13 +219,22 @@ extension GameMainVC {
     }
     
     func configureLogoImageView() {
-        logoImageView.translatesAutoresizingMaskIntoConstraints = false
+        timerLabel.translatesAutoresizingMaskIntoConstraints = false
+        timerValue = 30
+        timerLabel.text = String(timerValue)
+        timerLabel.font = .boldSystemFont(ofSize: 24)
+        timerLabel.textColor = .white
         
-        logoImageView.image = UIImage(named: "Logo")
+        let timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+            
+            self.timerValue -= 1
+            self.timerLabel.text = "\(String(self.timerValue))"
+
+        }
         
         NSLayoutConstraint.activate([
-            logoImageView.heightAnchor.constraint(equalToConstant: 100),
-            logoImageView.widthAnchor.constraint(equalToConstant: 100)
+            timerLabel.heightAnchor.constraint(equalToConstant: 100),
+            timerLabel.widthAnchor.constraint(equalToConstant: 100)
             
         ])
     }
@@ -254,7 +265,7 @@ extension GameMainVC {
         topStackView.distribution = .fillProportionally
         topStackView.spacing = 20
         
-        topStackView.addArrangedSubview(logoImageView)
+        topStackView.addArrangedSubview(timerLabel)
         topStackView.addArrangedSubview(questionTextLabel)
         topStackView.translatesAutoresizingMaskIntoConstraints = false
         
