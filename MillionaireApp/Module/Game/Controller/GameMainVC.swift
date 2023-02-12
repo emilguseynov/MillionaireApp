@@ -71,8 +71,11 @@ class GameMainVC: UIViewController, Coordinating {
         
         setupUI()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Забрать деньги", style: .plain, target: self, action: #selector(loseButtonTapped))
-        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: "Забрать деньги",
+            style: .plain,
+            target: self,
+            action: #selector (takeTheMoneyTapped(sender:)))
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -96,11 +99,10 @@ class GameMainVC: UIViewController, Coordinating {
         SoundClass.stopSound()
     }
     
+    // MARK: - Take the money method
     
-    // MARK: - Lose Button method
-    
-    @objc func loseButtonTapped() {
-        coordinator!.goToWinnerScreen(questionsAnswered: questionNumber, moneyWon: coordinator!.moneyEarned)
+    @objc func takeTheMoneyTapped(sender: UIButton) {
+        coordinator!.presentWinLoseScreen(with: .win)
     }
     
 }
@@ -197,7 +199,7 @@ extension GameMainVC {
             question = (coordinator?.updateQuestion())!.question
             questionNumber = (coordinator?.updateQuestion())!.questionNumber
             
-            questionNumberLabel.text = "Вопрос " + String(questionNumber)
+            questionNumberLabel.text = "Вопрос " + String(questionNumber + 1)
             questionCostLabel.text = String(question.price) + " RUB"
             questionTextLabel.text = question.text
             tableView.reloadData()
@@ -416,27 +418,27 @@ extension GameMainVC {
 
  //MARK: - PreviewProvider
 
-struct FlowProvider: PreviewProvider {
-    static var previews: some View {
-        ContainterView().edgesIgnoringSafeArea(.all)
-    }
-
-    struct ContainterView: UIViewControllerRepresentable {
-
-        let view = GameMainVC(question: Question(text: "Question for the sake of this demo. Moreover, I would like to test text truncation. I am typing more word to make this question even longer", price: 100, answers: [
-            Answer(text: "First answer", isRight: false),
-            Answer(text: "Second answer", isRight: false),
-            Answer(text: "Third time the charm", isRight: true),
-            Answer(text: "Just random fourth answer", isRight: false)
-        ]), questionNumber: 1)
-        func makeUIViewController(context: UIViewControllerRepresentableContext<FlowProvider.ContainterView>) -> GameMainVC {
-            return view
-        }
-
-        func updateUIViewController(_ uiViewController: FlowProvider.ContainterView.UIViewControllerType, context: UIViewControllerRepresentableContext<FlowProvider.ContainterView>) {
-
-        }
-
-    }
-
-}
+//struct FlowProvider: PreviewProvider {
+//    static var previews: some View {
+//        ContainterView().edgesIgnoringSafeArea(.all)
+//    }
+//
+//    struct ContainterView: UIViewControllerRepresentable {
+//
+//        let view = GameMainVC(question: Question(text: "Question for the sake of this demo. Moreover, I would like to test text truncation. I am typing more word to make this question even longer", price: 100, answers: [
+//            Answer(text: "First answer", isRight: false),
+//            Answer(text: "Second answer", isRight: false),
+//            Answer(text: "Third time the charm", isRight: true),
+//            Answer(text: "Just random fourth answer", isRight: false)
+//        ]), questionNumber: 1)
+//        func makeUIViewController(context: UIViewControllerRepresentableContext<FlowProvider.ContainterView>) -> GameMainVC {
+//            return view
+//        }
+//
+//        func updateUIViewController(_ uiViewController: FlowProvider.ContainterView.UIViewControllerType, context: UIViewControllerRepresentableContext<FlowProvider.ContainterView>) {
+//
+//        }
+//
+//    }
+//
+//}

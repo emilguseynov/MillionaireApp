@@ -12,15 +12,17 @@ class GameCoordinator {
     var navigationController: UINavigationController?
     
     var dataFetch: DataFetch?
-    var questionArr: [Question]?
+    var questionArr: [Question]!
     var questionNumber = 0
     var moneyEarned = 0
+    var safeHavenMoney = 0
     
     func start() {
         let viewControoler = MainViewController()
         viewControoler.coordinator = self
         navigationController?.setViewControllers([viewControoler], animated: false)
         questionNumber = 0
+        moneyEarned = 0
         
     }
     
@@ -46,37 +48,47 @@ class GameCoordinator {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
             SoundClass.stopSound()
+            
             if isRight {
                 let questionListVC = QuestionsListViewController()
                 self.navigationController?.pushViewController(questionListVC, animated: true)
+                
                 self.questionNumber += 1
+                self.moneyEarned = qlist[qlist.count - self.questionNumber].amount
                 
-                self.moneyEarned += qlist[qlist.count-self.questionNumber].amount
-                
+                if self.questionArr[self.questionNumber - 1].isSafeHaven {
+                    self.safeHavenMoney = self.moneyEarned
+                }
                 // need setup questionListVC to highlight just answered question with green color
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                    
                     self.dismissPresentedVC()
-                    //self.presentGameVCWithQuestion(questionNumber: self.questionNumber)
                 }
             } else {
-                // create and present loser screen
+                self.presentWinLoseScreen(with: .lose)
                 SoundClass.playSound(resource: .answerIsWrong)
-                self.start()
+                
             }
         }
-        
-        
     }
     
     func backButtonTapped() {
         questionNumber = 0
     }
     
-    func goToWinnerScreen(questionsAnswered: Int, moneyWon: Int) {
+    func presentWinLoseScreen(with result: GameResult) {
+        let winLoseVC = WinLoseVC()
+        winLoseVC.coordinator = self
         
-        // to be implemented
+        switch result {
+        case .lose:
+            winLoseVC.configure(with: result, moneyEarned: safeHavenMoney)
+        case .moneyTaken:
+            winLoseVC.configure(with: result, moneyEarned: moneyEarned)
+        case .win:
+            winLoseVC.configure(with: result, moneyEarned: moneyEarned)
+        }
+        navigationController?.pushViewController(winLoseVC, animated: true)
     }
     
     //  MARK: - Private methods
@@ -92,21 +104,22 @@ class GameCoordinator {
                 questionNumber: questionNumber)
             gameVC.coordinator = self
             self.navigationController?.pushViewController(gameVC, animated: true)
+            
         }
-        
-        self.questionNumber += 1
     }
     
-    
     func updateQuestion() -> (question: Question, questionNumber: Int) {
-        print("updateQuestion method called")
         
         guard let question = questionArr?[questionNumber] else {return
-            (Question(text: "Error", price: 0, answers: [Answer(text: "Error", isRight: false)]), 999)
+            (Question(
+                text: "",
+                price: 0,
+                isSafeHaven: false,
+                answers: [Answer(text: "", isRight: false)]),
+             0)
         }
         if questionNumber >= 15 {
-            //  create and present winner screen
-            goToWinnerScreen(questionsAnswered: 15, moneyWon: moneyEarned)
+            presentWinLoseScreen(with: .win)
             start()
         }
         
@@ -114,9 +127,7 @@ class GameCoordinator {
         mixedAnswersQuestion.answers = question.answers.shuffled()
         return (mixedAnswersQuestion, questionNumber)
         
-        
     }
-    
     
     private func dismissPresentedVC() {
         guard let navigationController = self.navigationController else {return}
@@ -125,12 +136,7 @@ class GameCoordinator {
         
         self.navigationController?.viewControllers = navigationArray
     }
- 
-    
- 
-    
 }
-
 
 protocol Coordinating {
     var coordinator: GameCoordinator? { get set }
