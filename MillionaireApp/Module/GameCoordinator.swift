@@ -43,7 +43,9 @@ class GameCoordinator {
         SoundClass.playSound(resource: .intrigue)
         
         if let gameVC = navigationController?.viewControllers.last as? GameMainVC {
-            gameVC.tableView.isUserInteractionEnabled = false
+            gameVC.view.isUserInteractionEnabled = false
+            gameVC.timer.invalidate()
+
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
@@ -105,7 +107,6 @@ class GameCoordinator {
                 questionNumber: questionNumber)
             gameVC.coordinator = self
             self.navigationController?.pushViewController(gameVC, animated: true)
-            timerMethod()
         }
     }
     
@@ -126,7 +127,7 @@ class GameCoordinator {
         
         var mixedAnswersQuestion = question
         mixedAnswersQuestion.answers = question.answers.shuffled()
-        timerMethod()
+        
         return (mixedAnswersQuestion, questionNumber)
         
     }
@@ -138,12 +139,7 @@ class GameCoordinator {
         
         self.navigationController?.viewControllers = navigationArray
     }
-    
-    func timerMethod() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
-            self.presentWinLoseScreen(with: .lose)
-        }
-    }
+
 }
 
 protocol Coordinating {
