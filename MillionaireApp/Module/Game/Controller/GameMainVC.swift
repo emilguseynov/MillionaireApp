@@ -34,7 +34,9 @@ class GameMainVC: UIViewController, Coordinating {
     
     var question: Question
     var questionNumber: Int
-    
+    var timer                         = Timer()
+    var timerValue = 30
+
     
     
     var coordinator: GameCoordinator?
@@ -43,9 +45,6 @@ class GameMainVC: UIViewController, Coordinating {
     var isAudienceHelpUsed = false
     var isCallAFriendUsed = false
     var isFiftyFiftyUsed = false
-    
-    var timerValue = 0
-    
     
     //  MARK: - Initializers
     
@@ -200,9 +199,11 @@ extension GameMainVC {
     
     func updateUI() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [self] in
+            view.isUserInteractionEnabled = true
             question = (coordinator?.updateQuestion())!.question
             questionNumber = (coordinator?.updateQuestion())!.questionNumber
             
+            setTimer()
             questionNumberLabel.text = "Вопрос " + String(questionNumber + 1)
             questionCostLabel.text = String(question.price) + " RUB"
             questionTextLabel.text = question.text
@@ -218,6 +219,19 @@ extension GameMainVC {
         backgroundImageView.frame = view.bounds
     }
     
+    private func setTimer() {
+        timerValue = 33
+        timerLabel.text = String(timerValue)
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+            self.timerValue -= 1
+            self.timerLabel.text = "\(String(self.timerValue))"
+            if self.timerValue <= 0 {
+                self.coordinator?.presentWinLoseScreen(with: .lose)
+                timer.invalidate()
+            }
+        }
+    }
+    
     func configureLogoImageView() {
         timerLabel.translatesAutoresizingMaskIntoConstraints = false
         timerValue = 30
@@ -225,12 +239,7 @@ extension GameMainVC {
         timerLabel.font = .boldSystemFont(ofSize: 24)
         timerLabel.textColor = .white
         
-        let timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-            
-            self.timerValue -= 1
-            self.timerLabel.text = "\(String(self.timerValue))"
-
-        }
+        setTimer()
         
         NSLayoutConstraint.activate([
             timerLabel.heightAnchor.constraint(equalToConstant: 100),
