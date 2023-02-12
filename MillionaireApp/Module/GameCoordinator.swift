@@ -51,6 +51,7 @@ class GameCoordinator {
             
             if isRight {
                 let questionListVC = QuestionsListViewController()
+                questionListVC.currentQuestion = self.questionArr.count - (self.questionNumber + 1)
                 self.navigationController?.pushViewController(questionListVC, animated: true)
                 
                 self.questionNumber += 1

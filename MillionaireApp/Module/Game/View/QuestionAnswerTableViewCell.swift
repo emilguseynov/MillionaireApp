@@ -64,8 +64,9 @@ class QuestionAnswerTableViewCell: UITableViewCell {
         questionAnswerLabel.translatesAutoresizingMaskIntoConstraints = false
         questionAnswerLabel.font = .systemFont(ofSize: 20, weight: .bold)
         questionAnswerLabel.textColor = .white
+        questionAnswerLabel.minimumScaleFactor = 0.2
+        questionAnswerLabel.adjustsFontSizeToFitWidth = true
         
-
         backgroundImageView.contentMode = .scaleAspectFill
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         backgroundImageView.frame = frame
