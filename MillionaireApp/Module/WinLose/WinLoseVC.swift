@@ -28,7 +28,7 @@ class WinLoseVC: UIViewController, Coordinating {
     private var bigResultLabel: UILabel = {
         let label = UILabel()
         label.textColor = .orange
-        label.font = .boldSystemFont(ofSize: 50)
+        label.font = .boldSystemFont(ofSize: 36)
         label.numberOfLines = 0
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -114,6 +114,7 @@ extension WinLoseVC {
         NSLayoutConstraint.activate([
             bigResultLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             bigResultLabel.topAnchor.constraint(equalTo: logoGameImage.bottomAnchor, constant: 47),
+            bigResultLabel.widthAnchor.constraint(equalToConstant: view.frame.width - 20)
         ])
         
         NSLayoutConstraint.activate([
