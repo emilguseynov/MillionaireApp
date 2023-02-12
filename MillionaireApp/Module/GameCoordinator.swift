@@ -105,7 +105,7 @@ class GameCoordinator {
                 questionNumber: questionNumber)
             gameVC.coordinator = self
             self.navigationController?.pushViewController(gameVC, animated: true)
-            
+            timerMethod()
         }
     }
     
@@ -126,6 +126,7 @@ class GameCoordinator {
         
         var mixedAnswersQuestion = question
         mixedAnswersQuestion.answers = question.answers.shuffled()
+        timerMethod()
         return (mixedAnswersQuestion, questionNumber)
         
     }
@@ -136,6 +137,12 @@ class GameCoordinator {
         navigationArray.removeLast()
         
         self.navigationController?.viewControllers = navigationArray
+    }
+    
+    func timerMethod() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+            self.presentWinLoseScreen(with: .lose)
+        }
     }
 }
 
