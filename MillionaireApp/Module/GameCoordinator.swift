@@ -140,7 +140,7 @@ class GameCoordinator {
     }
     
     func timerMethod() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
             self.presentWinLoseScreen(with: .lose)
         }
     }
