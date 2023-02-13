@@ -99,13 +99,14 @@ class GameMainVC: UIViewController, Coordinating {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        SoundClass.stopSound()
+//        SoundClass.stopSound()
     }
     
     // MARK: - Take the money method
     
     @objc func takeTheMoneyTapped(sender: UIButton) {
-        coordinator!.presentWinLoseScreen(with: .win)
+        coordinator!.presentWinLoseScreen(with: .moneyTaken)
+        timer.invalidate()
     }
     
 }
@@ -175,9 +176,15 @@ extension GameMainVC: UITableViewDelegate, UITableViewDataSource {
   
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        coordinator?.selectedAnswer(isRight: question.answers[indexPath.section].isRight)
-        tableView.reloadData()
-        updateUI()
+        let selectedAnswer = question.answers[indexPath.section]
+        
+        coordinator?.selectedAnswer(isRight: selectedAnswer.isRight)
+        
+        if selectedAnswer.isRight {
+            tableView.reloadData()
+            updateUI()
+        }
+        
         
     }
     
@@ -225,7 +232,8 @@ extension GameMainVC {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
             self.timerValue -= 1
             self.timerLabel.text = "\(String(self.timerValue))"
-            if self.timerValue <= 0 {
+            print(self.timerValue)
+            if self.timerValue == 0 {
                 self.coordinator?.presentWinLoseScreen(with: .lose)
                 timer.invalidate()
             }
@@ -437,30 +445,3 @@ extension GameMainVC {
         }
     }
 }
-
- //MARK: - PreviewProvider
-
-//struct FlowProvider: PreviewProvider {
-//    static var previews: some View {
-//        ContainterView().edgesIgnoringSafeArea(.all)
-//    }
-//
-//    struct ContainterView: UIViewControllerRepresentable {
-//
-//        let view = GameMainVC(question: Question(text: "Question for the sake of this demo. Moreover, I would like to test text truncation. I am typing more word to make this question even longer", price: 100, answers: [
-//            Answer(text: "First answer", isRight: false),
-//            Answer(text: "Second answer", isRight: false),
-//            Answer(text: "Third time the charm", isRight: true),
-//            Answer(text: "Just random fourth answer", isRight: false)
-//        ]), questionNumber: 1)
-//        func makeUIViewController(context: UIViewControllerRepresentableContext<FlowProvider.ContainterView>) -> GameMainVC {
-//            return view
-//        }
-//
-//        func updateUIViewController(_ uiViewController: FlowProvider.ContainterView.UIViewControllerType, context: UIViewControllerRepresentableContext<FlowProvider.ContainterView>) {
-//
-//        }
-//
-//    }
-//
-//}

@@ -69,8 +69,6 @@ class GameCoordinator {
                 }
             } else {
                 self.presentWinLoseScreen(with: .lose)
-                SoundClass.playSound(resource: .answerIsWrong)
-                
             }
         }
     }
@@ -86,10 +84,13 @@ class GameCoordinator {
         switch result {
         case .lose:
             winLoseVC.configure(with: result, moneyEarned: safeHavenMoney)
+            SoundClass.playSound(resource: .answerIsWrong)
         case .moneyTaken:
             winLoseVC.configure(with: result, moneyEarned: moneyEarned)
+            SoundClass.playSound(resource: .answerIsWrong)
         case .win:
             winLoseVC.configure(with: result, moneyEarned: moneyEarned)
+            SoundClass.playSound(resource: .won)
         }
         navigationController?.pushViewController(winLoseVC, animated: true)
     }
