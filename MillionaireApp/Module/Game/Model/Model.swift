@@ -11,6 +11,7 @@ import Foundation
 struct Question: Decodable {
     let text: String
     let price: Int
+    let isSafeHaven: Bool
     var answers: [Answer]
 }
 

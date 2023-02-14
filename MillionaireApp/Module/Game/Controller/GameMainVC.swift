@@ -15,7 +15,7 @@ class GameMainVC: UIViewController, Coordinating {
     let backgroundImage               = UIImageView()
     
     var questionTextLabel             = UILabel()
-    let logoImageView                 = UIImageView()
+    let timerLabel                    = UILabel()
     let topStackView                  = UIStackView()
     
     var questionNumberLabel           = UILabel()
@@ -34,7 +34,9 @@ class GameMainVC: UIViewController, Coordinating {
     
     var question: Question
     var questionNumber: Int
-    
+    var timer                         = Timer()
+    var timerValue = 30
+
     
     
     var coordinator: GameCoordinator?
@@ -42,7 +44,7 @@ class GameMainVC: UIViewController, Coordinating {
     //  help buttons use status
     var isAudienceHelpUsed = false
     var isCallAFriendUsed = false
-    
+    var isFiftyFiftyUsed = false
     
     //  MARK: - Initializers
     
@@ -72,8 +74,11 @@ class GameMainVC: UIViewController, Coordinating {
         
         setupUI()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Забрать деньги", style: .plain, target: self, action: #selector(loseButtonTapped))
-        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: "Забрать деньги",
+            style: .plain,
+            target: self,
+            action: #selector (takeTheMoneyTapped(sender:)))
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -94,14 +99,14 @@ class GameMainVC: UIViewController, Coordinating {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        SoundClass.stopSound()
+//        SoundClass.stopSound()
     }
     
+    // MARK: - Take the money method
     
-    // MARK: - Lose Button method
-    
-    @objc func loseButtonTapped() {
-        coordinator!.goToWinnerScreen(questionsAnswered: questionNumber, moneyWon: coordinator!.moneyEarned)
+    @objc func takeTheMoneyTapped(sender: UIButton) {
+        coordinator!.presentWinLoseScreen(with: .moneyTaken)
+        timer.invalidate()
     }
     
 }
@@ -171,9 +176,15 @@ extension GameMainVC: UITableViewDelegate, UITableViewDataSource {
   
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        coordinator?.selectedAnswer(isRight: question.answers[indexPath.section].isRight)
-        tableView.reloadData()
-        updateUI()
+        let selectedAnswer = question.answers[indexPath.section]
+        
+        coordinator?.selectedAnswer(isRight: selectedAnswer.isRight)
+        
+        if selectedAnswer.isRight {
+            tableView.reloadData()
+            updateUI()
+        }
+        
         
     }
     
@@ -195,10 +206,12 @@ extension GameMainVC {
     
     func updateUI() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [self] in
+            view.isUserInteractionEnabled = true
             question = (coordinator?.updateQuestion())!.question
             questionNumber = (coordinator?.updateQuestion())!.questionNumber
             
-            questionNumberLabel.text = "Вопрос " + String(questionNumber)
+            setTimer()
+            questionNumberLabel.text = "Вопрос " + String(questionNumber + 1)
             questionCostLabel.text = String(question.price) + " RUB"
             questionTextLabel.text = question.text
             tableView.reloadData()
@@ -213,14 +226,32 @@ extension GameMainVC {
         backgroundImageView.frame = view.bounds
     }
     
+    private func setTimer() {
+        timerValue = 33
+        timerLabel.text = String(timerValue)
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+            self.timerValue -= 1
+            self.timerLabel.text = "\(String(self.timerValue))"
+            print(self.timerValue)
+            if self.timerValue == 0 {
+                self.coordinator?.presentWinLoseScreen(with: .lose)
+                timer.invalidate()
+            }
+        }
+    }
+    
     func configureLogoImageView() {
-        logoImageView.translatesAutoresizingMaskIntoConstraints = false
+        timerLabel.translatesAutoresizingMaskIntoConstraints = false
+        timerValue = 30
+        timerLabel.text = String(timerValue)
+        timerLabel.font = .boldSystemFont(ofSize: 24)
+        timerLabel.textColor = .white
         
-        logoImageView.image = UIImage(named: "Logo")
+        setTimer()
         
         NSLayoutConstraint.activate([
-            logoImageView.heightAnchor.constraint(equalToConstant: 100),
-            logoImageView.widthAnchor.constraint(equalToConstant: 100)
+            timerLabel.heightAnchor.constraint(equalToConstant: 100),
+            timerLabel.widthAnchor.constraint(equalToConstant: 100)
             
         ])
     }
@@ -251,7 +282,7 @@ extension GameMainVC {
         topStackView.distribution = .fillProportionally
         topStackView.spacing = 20
         
-        topStackView.addArrangedSubview(logoImageView)
+        topStackView.addArrangedSubview(timerLabel)
         topStackView.addArrangedSubview(questionTextLabel)
         topStackView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -302,6 +333,10 @@ extension GameMainVC {
     func configureEliminateTwoQuestionsButton() {
         eliminateTwoQuestionsButton.setImage(ImageList.fifty, for: .normal)
         eliminateTwoQuestionsButton.translatesAutoresizingMaskIntoConstraints = false
+        eliminateTwoQuestionsButton.addTarget(
+            self,
+            action: #selector(fiftyFiftyButtonTapped(sender:)),
+            for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             eliminateTwoQuestionsButton.heightAnchor.constraint(equalToConstant: buttonSize.height),
@@ -390,31 +425,23 @@ extension GameMainVC {
         present(alert, animated: true)
         
     }
-}
-
- //MARK: - PreviewProvider
-
-struct FlowProvider: PreviewProvider {
-    static var previews: some View {
-        ContainterView().edgesIgnoringSafeArea(.all)
-    }
-
-    struct ContainterView: UIViewControllerRepresentable {
-
-        let view = GameMainVC(question: Question(text: "Question for the sake of this demo. Moreover, I would like to test text truncation. I am typing more word to make this question even longer", price: 100, answers: [
-            Answer(text: "First answer", isRight: false),
-            Answer(text: "Second answer", isRight: false),
-            Answer(text: "Third time the charm", isRight: true),
-            Answer(text: "Just random fourth answer", isRight: false)
-        ]), questionNumber: 1)
-        func makeUIViewController(context: UIViewControllerRepresentableContext<FlowProvider.ContainterView>) -> GameMainVC {
-            return view
+    
+    @objc func fiftyFiftyButtonTapped(sender: UIButton) {
+        sender.setImage(ImageList.fiftyUsed, for: .normal)
+        if !isFiftyFiftyUsed {
+            HelpAlertController().wrongAndRight(from: question.answers) { rightAnswer, wrongAnswer in
+                let halfOfAnswers = [rightAnswer, wrongAnswer].shuffled()
+                self.question.answers = halfOfAnswers
+                self.tableView.reloadData()
+            }
+            isFiftyFiftyUsed = true
+        } else {
+            let alert = UIAlertController(
+                title: "Вы уже использовали эту подсказку",
+                message: nil,
+                preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ок", style: .cancel))
+            present(alert, animated: true)
         }
-
-        func updateUIViewController(_ uiViewController: FlowProvider.ContainterView.UIViewControllerType, context: UIViewControllerRepresentableContext<FlowProvider.ContainterView>) {
-
-        }
-
     }
-
 }
