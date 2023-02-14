@@ -22,8 +22,8 @@ class GameCoordinator {
         viewControoler.coordinator = self
         navigationController?.setViewControllers([viewControoler], animated: false)
         questionNumber = 0
+        safeHavenMoney = 0
         moneyEarned = 0
-        
     }
     
     func startGame() {
@@ -44,6 +44,7 @@ class GameCoordinator {
         
         if let gameVC = navigationController?.viewControllers.last as? GameMainVC {
             gameVC.view.isUserInteractionEnabled = false
+            navigationController?.navigationBar.isUserInteractionEnabled = false
             gameVC.timer.invalidate()
 
         }
@@ -56,16 +57,23 @@ class GameCoordinator {
                 questionListVC.currentQuestion = self.questionArr.count - (self.questionNumber + 1)
                 self.navigationController?.pushViewController(questionListVC, animated: true)
                 
-                self.questionNumber += 1
-                self.moneyEarned = qlist[qlist.count - self.questionNumber].amount
-                
-                if self.questionArr[self.questionNumber - 1].isSafeHaven {
-                    self.safeHavenMoney = self.moneyEarned
-                }
-                // need setup questionListVC to highlight just answered question with green color
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                    self.dismissPresentedVC()
+                if self.questionNumber == 14 {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                        self.presentWinLoseScreen(with: .win)
+                        SoundClass.playSound(resource: .won)
+                        return
+                    }
+                } else {
+                    self.questionNumber += 1
+                    self.moneyEarned = qlist[qlist.count - self.questionNumber].amount
+                    
+                    if self.questionArr[self.questionNumber - 1].isSafeHaven {
+                        self.safeHavenMoney = self.moneyEarned
+                    }
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        self.dismissPresentedVC()
+                    }
                 }
             } else {
                 self.presentWinLoseScreen(with: .lose)
@@ -113,23 +121,24 @@ class GameCoordinator {
     
     func updateQuestion() -> (question: Question, questionNumber: Int) {
         
-        guard let question = questionArr?[questionNumber] else {return
-            (Question(
-                text: "",
-                price: 0,
-                isSafeHaven: false,
-                answers: [Answer(text: "", isRight: false)]),
-             0)
-        }
         if questionNumber >= 15 {
             presentWinLoseScreen(with: .win)
-            start()
+            return(Question(text: "", price: 0, isSafeHaven: false, answers: [Answer(text: "", isRight: false)]), 0)
+        } else {
+            guard let question = questionArr?[questionNumber] else {return
+                (Question(
+                    text: "",
+                    price: 0,
+                    isSafeHaven: false,
+                    answers: [Answer(text: "", isRight: false)]),
+                 0)
+            }
+            var mixedAnswersQuestion = question
+            mixedAnswersQuestion.answers = question.answers.shuffled()
+            return (mixedAnswersQuestion, questionNumber)
+
         }
         
-        var mixedAnswersQuestion = question
-        mixedAnswersQuestion.answers = question.answers.shuffled()
-        
-        return (mixedAnswersQuestion, questionNumber)
         
     }
     

@@ -26,7 +26,6 @@ class Service: DataFetch {
         guard let data = try? Data(contentsOf: url) else {
             fatalError("Failed to load \(file) from bundle.")
         }
-        print(data)
         guard let questionArray = try? decoder.decode([Question].self, from: data) else {
             print("failed to decode data")
             return
