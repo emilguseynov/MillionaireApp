@@ -49,29 +49,29 @@ class GameCoordinator {
 
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             SoundClass.stopSound()
             
             if isRight {
                 let questionListVC = QuestionsListViewController()
                 questionListVC.currentQuestion = self.questionArr.count - (self.questionNumber + 1)
+                self.questionNumber += 1
+                self.moneyEarned = qlist[qlist.count - self.questionNumber].amount
                 self.navigationController?.pushViewController(questionListVC, animated: true)
                 
-                if self.questionNumber == 14 {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                if self.questionNumber == 15 {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         self.presentWinLoseScreen(with: .win)
                         SoundClass.playSound(resource: .won)
                         return
                     }
                 } else {
-                    self.questionNumber += 1
-                    self.moneyEarned = qlist[qlist.count - self.questionNumber].amount
                     
                     if self.questionArr[self.questionNumber - 1].isSafeHaven {
                         self.safeHavenMoney = self.moneyEarned
                     }
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         self.dismissPresentedVC()
                     }
                 }

@@ -202,7 +202,7 @@ extension GameMainVC {
     }
     
     func updateUI() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
             view.isUserInteractionEnabled = true
             question = (coordinator?.updateQuestion())!.question
             questionNumber = (coordinator?.updateQuestion())!.questionNumber
