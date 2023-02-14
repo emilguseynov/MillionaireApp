@@ -36,7 +36,7 @@ class GameMainVC: UIViewController, Coordinating {
     var questionNumber: Int
     var timer                         = Timer()
     var timerValue = 30
-
+    
     
     
     var coordinator: GameCoordinator?
@@ -99,7 +99,7 @@ class GameMainVC: UIViewController, Coordinating {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-//        SoundClass.stopSound()
+        //        SoundClass.stopSound()
     }
     
     // MARK: - Take the money method
@@ -138,24 +138,24 @@ extension GameMainVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         1
     }
-
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         cellSpacing
     }
-
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
         view.backgroundColor = .clear
-
+        
         return view
     }
     
-  
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
     
-
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -173,21 +173,18 @@ extension GameMainVC: UITableViewDelegate, UITableViewDataSource {
         return UITableViewCell()
     }
     
-  
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedAnswer = question.answers[indexPath.section]
         
         coordinator?.selectedAnswer(isRight: selectedAnswer.isRight)
         
-        if selectedAnswer.isRight {
+        if selectedAnswer.isRight && questionNumber < 14 {
             tableView.reloadData()
             updateUI()
         }
-        
-        
     }
-    
 }
 
 
@@ -232,7 +229,6 @@ extension GameMainVC {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
             self.timerValue -= 1
             self.timerLabel.text = "\(String(self.timerValue))"
-            print(self.timerValue)
             if self.timerValue == 0 {
                 self.coordinator?.presentWinLoseScreen(with: .lose)
                 timer.invalidate()

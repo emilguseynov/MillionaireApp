@@ -132,5 +132,6 @@ extension WinLoseVC {
     
     @objc func goToTheMainVCPressed (_ sender: UIButton) {
         coordinator?.start()
+        SoundClass.stopSound()
     }
 }

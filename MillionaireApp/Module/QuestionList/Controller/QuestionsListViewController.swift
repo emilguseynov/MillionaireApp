@@ -165,7 +165,7 @@ extension QuestionsListViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        SoundClass.stopSound()
+//        SoundClass.stopSound()
     }
 }
 
