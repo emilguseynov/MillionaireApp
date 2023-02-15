@@ -15,6 +15,7 @@ class GameMainVC: UIViewController, Coordinating {
     let backgroundImage               = UIImageView()
     
     var questionTextLabel             = UILabel()
+    let logoImageView                 = UIImageView()
     let timerLabel                    = UILabel()
     let topStackView                  = UIStackView()
     
@@ -124,8 +125,8 @@ extension GameMainVC: UITableViewDelegate, UITableViewDataSource {
         
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: middleStackView.bottomAnchor, constant: 50),
-            tableView.bottomAnchor.constraint(equalTo: bottomStackView.topAnchor, constant: -50),
+            tableView.topAnchor.constraint(equalTo: middleStackView.bottomAnchor, constant: 40),
+            tableView.bottomAnchor.constraint(equalTo: bottomStackView.topAnchor, constant: -40),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 40),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -40)
         ])
@@ -237,17 +238,12 @@ extension GameMainVC {
     }
     
     func configureLogoImageView() {
-        timerLabel.translatesAutoresizingMaskIntoConstraints = false
-        timerValue = 30
-        timerLabel.text = String(timerValue)
-        timerLabel.font = .boldSystemFont(ofSize: 24)
-        timerLabel.textColor = .white
         
-        setTimer()
+        logoImageView.image = UIImage(named: "Logo")
         
         NSLayoutConstraint.activate([
-            timerLabel.heightAnchor.constraint(equalToConstant: 100),
-            timerLabel.widthAnchor.constraint(equalToConstant: 100)
+            logoImageView.heightAnchor.constraint(equalToConstant: 100),
+            logoImageView.widthAnchor.constraint(equalToConstant: 100)
             
         ])
     }
@@ -278,7 +274,7 @@ extension GameMainVC {
         topStackView.distribution = .fillProportionally
         topStackView.spacing = 20
         
-        topStackView.addArrangedSubview(timerLabel)
+        topStackView.addArrangedSubview(logoImageView)
         topStackView.addArrangedSubview(questionTextLabel)
         topStackView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -302,19 +298,37 @@ extension GameMainVC {
         questionCostLabel.textColor = .black
     }
     
+    func configureTimer() {
+        timerLabel.translatesAutoresizingMaskIntoConstraints = false
+        timerValue = 30
+        timerLabel.text = String(timerValue)
+        timerLabel.font = .boldSystemFont(ofSize: 24)
+        timerLabel.textColor = .white
+        
+        setTimer()
+        
+        NSLayoutConstraint.activate([
+           // timerLabel.heightAnchor.constraint(equalToConstant: 100),
+            //timerLabel.widthAnchor.constraint(equalToConstant: 45)
+            
+        ])
+    }
+    
     func setMiddleStackView() {
         
         configureQuestionNumberLabel()
         configureQuestionCostLabel()
+        configureTimer()
         
         
         view.addSubview(middleStackView)
         
         middleStackView.axis = .horizontal
         middleStackView.distribution = .equalSpacing
-        //topStackView.spacing = 20
+        middleStackView.spacing = 20
         
         middleStackView.addArrangedSubview(questionNumberLabel)
+        middleStackView.addArrangedSubview(timerLabel)
         middleStackView.addArrangedSubview(questionCostLabel)
         middleStackView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -440,4 +454,36 @@ extension GameMainVC {
             present(alert, animated: true)
         }
     }
+}
+
+
+struct FlowProvider: PreviewProvider {
+    static var previews: some View {
+        ContainterView().edgesIgnoringSafeArea(.all)
+    }
+    
+    struct ContainterView: UIViewControllerRepresentable {
+        
+        let view = GameMainVC(
+            question: Question(
+                text: "Some question to see data",
+                price: 100,
+                isSafeHaven: false,
+                answers: [
+                    Answer(text: "Extremely Long Answer But longer", isRight: false),
+                    Answer(text: "Two", isRight: false),
+                    Answer(text: "Three", isRight: false),
+                    Answer(text: "Four", isRight: true),
+                ]),
+            questionNumber: 1)
+        func makeUIViewController(context: UIViewControllerRepresentableContext<FlowProvider.ContainterView>) -> GameMainVC {
+            return view
+        }
+        
+        func updateUIViewController(_ uiViewController: FlowProvider.ContainterView.UIViewControllerType, context: UIViewControllerRepresentableContext<FlowProvider.ContainterView>) {
+            
+        }
+        
+    }
+    
 }
