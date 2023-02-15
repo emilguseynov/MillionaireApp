@@ -8,9 +8,13 @@
 import Foundation
 import AVFoundation
 
-struct SoundClass {
+class SoundClass {
     
     static var player = AVAudioPlayer()
+    
+    let shared = SoundClass()
+    private init() {}
+    
     
     enum Sound: String {
         
@@ -24,9 +28,6 @@ struct SoundClass {
    
     
     static func playSound(resource: Sound) {
-    
-       
-        
         let url = Bundle.main.url(forResource: resource.rawValue, withExtension: "mp3")
     
         guard let url = url else {return}

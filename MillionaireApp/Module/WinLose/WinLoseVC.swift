@@ -84,6 +84,7 @@ extension WinLoseVC {
 //MARK: - setupView
 extension WinLoseVC {
     private func setupView() {
+        navigationItem.hidesBackButton = true
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
             backgroundImage.image = UIImage(named: "background")
             self.view.insertSubview(backgroundImage, at: 0)
@@ -131,5 +132,6 @@ extension WinLoseVC {
     
     @objc func goToTheMainVCPressed (_ sender: UIButton) {
         coordinator?.start()
+        SoundClass.stopSound()
     }
 }
